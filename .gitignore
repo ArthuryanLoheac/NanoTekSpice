@@ -1,13 +1,24 @@
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Compilation
+nanotekspice
+*.out
 *.a
 *.o
-.vscode/
-*.log
-vgcore*
+*.d
+
+# Unit tests
+unit_tests
 *.gcda
 *.gcno
 *.gcov
-unit_tests
-*.out
-*.d
+
+# Others
+.vscode/
 obj/
-nanotekspice
+vgcore*
+*.log
