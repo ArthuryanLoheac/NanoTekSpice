@@ -67,10 +67,10 @@ all: $(NAME) $(NAME_LIB)
 
 $(NAME): $(OBJ_SRC) $(OBJ_MAIN)
 	$(COMPILER) -o $(NAME) $(OBJ_SRC) $(OBJ_MAIN) $(CFLAGS)
-	@printf "$(YELLOW)[✅] $(BLUE)$(NAME), $(GREEN)Build complete ! $(NC)\n"
+	@printf "$(YEL)[✅] $(BLUE)$(NAME), $(GREEN)Build complete ! $(NC)\n"
 
 $(NAME_LIB): $(OBJ)
-	@printf "$(YELLOW)[📚] $(BLUE)$(NAME_LIB), $(GREEN)Library complete !$(NC)\n"
+	@printf "$(YEL)[📚] $(BLUE)$(NAME_LIB), $(GREEN)Library complete !$(NC)\n"
 	ar rc $(NAME_LIB) $(OBJ)
 
 # ============= CLEANS ============= #
@@ -88,7 +88,7 @@ fclean: clean
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(dir $@)
-	@printf "$(YELLOW)[⚒️] $(BLUE)Compiling, $(GREEN)$(@F)$(NC)\n"
+	@printf "$(YEL)[⚒️] $(BLUE)Compiling, $(GREEN)$(@F)$(NC)\n"
 	$(COMPILER) -c $(CFLAGS) $< -o $@
 
 -include $(DEPS)
