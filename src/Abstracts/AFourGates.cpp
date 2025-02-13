@@ -25,7 +25,7 @@ size_t nts::AFourGates::pinOutToInternPin(size_t pin)
 
 void nts::AFourGates::setNotComputed()
 {
-    _lastValueComputed = NOTCOMPUTED;
+    _ValueComputed = NOTCOMPUTED;
     for (auto &composant : _internComponents)
         composant->setNotComputed();
 }

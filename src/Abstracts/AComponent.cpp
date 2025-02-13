@@ -15,8 +15,8 @@ void nts::AComponent::simulate(std::size_t tick)
 nts::Tristate nts::AComponent::compute(std::size_t pin)
 {
     pin = pin;
-    _lastValueComputed = UNDEFINED;
-    return _lastValueComputed;
+    _ValueComputed = UNDEFINED;
+    return _ValueComputed;
 }
 
 void nts::AComponent::setLink(std::size_t pinOut, nts::IComponent &other,
@@ -37,7 +37,7 @@ size_t nts::AComponent::pinOutToInternPin(size_t pin)
 
 void nts::AComponent::setNotComputed()
 {
-    _lastValueComputed = NOTCOMPUTED;
+    _ValueComputed = NOTCOMPUTED;
 }
 
 size_t nts::AComponent::getIdFromPin(size_t pin)
