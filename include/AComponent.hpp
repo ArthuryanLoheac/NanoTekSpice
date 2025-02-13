@@ -31,6 +31,7 @@ namespace nts
         std::vector<std::pair<TypePin,
             std::vector<std::pair<IComponent &,
             std::size_t>>>> getInOut() override;
+        std::string getName() override;
 
     protected:
         AComponent(std::string name)

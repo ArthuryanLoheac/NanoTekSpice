@@ -52,3 +52,8 @@ std::vector<std::pair<nts::TypePin,
 {
     return _inOuts;
 }
+
+std::string nts::AComponent::getName()
+{
+    return _name;
+}
