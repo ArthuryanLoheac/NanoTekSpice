@@ -21,7 +21,7 @@ cd build
 cmake ..
 
 # Build
-make
+make -j$(nproc)
 
 if [ "$1" == "-t" ]; then
     make tests_run
