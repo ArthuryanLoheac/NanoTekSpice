@@ -11,7 +11,7 @@
 namespace nts {
     class AInput : public AComponent
     {
-        public:
+        protected:
             AInput(std::string name);
     };
 }
