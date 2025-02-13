@@ -28,7 +28,7 @@ namespace nts
         virtual void setNotComputed() override;
         virtual size_t getIdFromPin(size_t pin) override;
         std::vector<std::pair<TypePin,
-            std::vector<std::pair<IComponent,
+            std::vector<std::pair<IComponent &,
             std::size_t>>>> getInOut() override;
 
     protected:
@@ -36,7 +36,7 @@ namespace nts
             : _name(name) {};
         std::string _name;
         std::vector<std::pair<TypePin,
-            std::vector<std::pair<IComponent,
+            std::vector<std::pair<IComponent &,
             std::size_t>>>> _inOuts;
         std::vector<IComponent> _internComponents;
         Tristate _lastValueComputed;

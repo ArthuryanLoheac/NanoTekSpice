@@ -39,7 +39,7 @@ namespace nts
         virtual void setNotComputed() = 0;
         virtual size_t getIdFromPin(size_t pin) = 0;
         virtual std::vector<std::pair<TypePin,
-                std::vector<std::pair<IComponent,
+                std::vector<std::pair<IComponent &,
                 std::size_t>>>> getInOut() = 0;
     };
 }
