@@ -49,7 +49,17 @@ size_t nts::AComponent::getIdFromPin(size_t pin)
 
 std::vector<std::pair<nts::TypePin,
             std::vector<std::pair<nts::IComponent &,
-            std::size_t>>>> nts::AComponent::getInOut()
+            std::size_t>>>> &nts::AComponent::getInOut()
 {
     return _inOuts;
+}
+
+std::string nts::AComponent::getName()
+{
+    return _name;
+}
+
+nts::Tristate nts::AComponent::getValueComputed()
+{
+   return _ValueComputed;
 }

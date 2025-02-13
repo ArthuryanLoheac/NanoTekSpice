@@ -30,7 +30,9 @@ namespace nts
         virtual size_t getIdFromPin(size_t pin) override;
         std::vector<std::pair<TypePin,
             std::vector<std::pair<IComponent &,
-            std::size_t>>>> getInOut() override;
+            std::size_t>>>> &getInOut() override;
+        std::string getName() override;
+        virtual Tristate getValueComputed() override;
 
     protected:
         AComponent(std::string name)
@@ -39,7 +41,7 @@ namespace nts
         std::vector<std::pair<TypePin,
             std::vector<std::pair<IComponent &,
             std::size_t>>>> _inOuts;
-        std::vector<std::unique_ptr<IComponent>> _internComponents;
+        std::vector<std::shared_ptr<IComponent>> _internComponents;
         Tristate _ValueComputed;
         std::map<size_t, Tristate> _lastValue;
     };

@@ -19,6 +19,7 @@ namespace nts
         ~ComponentInput();
         nts::Tristate compute(std::size_t pin) override;
         void setValue(nts::Tristate value);
+        nts::Tristate getValueComputed() override;
 
     private:
         Tristate _value;
