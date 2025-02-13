@@ -16,8 +16,11 @@ cmake ..
 # Build
 make
 
-# Run the program
-./nanotekspice
-
-# Run the tests
-# make tests_run
+# Check for arguments
+if [ "$1" == "-t" ]; then
+    # Run the tests
+    make tests_run
+else
+    # Run the program
+    ./nanotekspice
+fi
