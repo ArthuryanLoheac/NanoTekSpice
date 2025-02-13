@@ -39,3 +39,8 @@ void nts::ComponentClock::setValue(nts::Tristate value)
 {
     _value = value;
 }
+
+nts::Tristate nts::ComponentClock::getValueComputed()
+{
+    return _value;
+}

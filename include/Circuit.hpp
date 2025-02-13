@@ -18,7 +18,8 @@
 namespace nts {
     class Circuit : public AComponent
     {
-        class Errors : public std::exception
+        public:
+            class Errors : public std::exception
         {
             public:
                 Errors(std::string const &message)
@@ -40,6 +41,6 @@ namespace nts {
             void display(void);
             void setValue(std::string const &name, nts::Tristate value);
             void addComponent(std::unique_ptr<IComponent> component);
-            std::shared_ptr<IComponent> &getComponent(std::string const &name);
+            IComponent &getComponent(std::string const &name);
     };
 }
