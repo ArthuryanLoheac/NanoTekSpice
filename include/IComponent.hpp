@@ -9,6 +9,7 @@
 #define I_COMPONENT_HPP
 
 #include <cstddef>
+#include <utility>
 
 namespace nts
 {
@@ -36,6 +37,10 @@ namespace nts
                              std::size_t pinIn) = 0;
         virtual size_t pinOutToInternPin(size_t pin) = 0;
         virtual void setNotComputed() = 0;
+        virtual size_t getIdFromPin(size_t pin) = 0;
+        virtual std::vector<std::pair<TypePin,
+                std::vector<std::pair<IComponent,
+                std::size_t>>>> getInOut() = 0;
     };
 }
 
