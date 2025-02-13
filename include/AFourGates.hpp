@@ -22,8 +22,7 @@ namespace nts
         size_t getIdFromPin(size_t pin) override;
 
     protected:
-        AFourGates(std::string name)
-            : AComponent(name) {};
+        AFourGates(std::string name);
     };
 }
 

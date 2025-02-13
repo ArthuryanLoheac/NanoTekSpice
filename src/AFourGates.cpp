@@ -9,7 +9,7 @@
 
 nts::Tristate nts::AFourGates::compute(std::size_t pin)
 {
-    return _internComponents[pin].compute(0);
+    return _internComponents[pin]->compute(0);
 }
 
 size_t nts::AFourGates::pinOutToInternPin(size_t pin)
@@ -26,8 +26,8 @@ size_t nts::AFourGates::pinOutToInternPin(size_t pin)
 void nts::AFourGates::setNotComputed()
 {
     _lastValueComputed = NOTCOMPUTED;
-    for (auto composant : _internComponents)
-        composant.setNotComputed();
+    for (const auto &composant : _internComponents)
+        composant->setNotComputed();
 }
 
 size_t nts::AFourGates::getIdFromPin(size_t pin)
