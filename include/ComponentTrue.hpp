@@ -10,13 +10,14 @@
 
 #include "AInput.hpp"
 
-namespace nts {
+namespace nts
+{
     class ComponentTrue : public AInput
     {
-        public:
-            ComponentTrue(std::string name);
-            ~ComponentTrue();
-            nts::Tristate compute(std::size_t pin) override;
+    public:
+        ComponentTrue(std::string name);
+        ~ComponentTrue();
+        nts::Tristate compute(std::size_t pin) override;
     };
 }
 

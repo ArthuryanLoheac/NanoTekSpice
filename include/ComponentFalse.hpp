@@ -10,13 +10,14 @@
 
 #include "AInput.hpp"
 
-namespace nts {
+namespace nts
+{
     class ComponentFalse : public AInput
     {
-        public:
-            ComponentFalse(std::string name);
-            ~ComponentFalse();
-            nts::Tristate compute(std::size_t pin) override;
+    public:
+        ComponentFalse(std::string name);
+        ~ComponentFalse();
+        nts::Tristate compute(std::size_t pin) override;
     };
 }
 
