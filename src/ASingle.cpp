@@ -20,5 +20,4 @@ nts::ASingle::ASingle(std::string name) : AComponent(name)
     _inOuts.push_back(makePair(IN));
     _inOuts.push_back(makePair(OUT));
     _lastValueComputed = UNDEFINED;
-    _internComponents = std::vector<IComponent>();
 }

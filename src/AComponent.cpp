@@ -23,8 +23,8 @@ void nts::AComponent::setLink(std::size_t pinOut, nts::IComponent &other,
                               std::size_t pinIn)
 {
     if (_internComponents.size() > 0) {
-        setLink(pinOut, _internComponents[getIdFromPin(pinOut)],
-            _internComponents[getIdFromPin(pinOut)].pinOutToInternPin(pinOut));
+        setLink(pinOut, *_internComponents[getIdFromPin(pinOut)],
+            _internComponents[getIdFromPin(pinOut)]->pinOutToInternPin(pinOut));
     }
     _inOuts[pinOut].second.push_back(std::make_pair(std::ref(other), pinIn));
     other.getInOut()[pinIn].second.push_back(std::make_pair(std::ref(*this), pinOut));

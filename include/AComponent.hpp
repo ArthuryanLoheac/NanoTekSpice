@@ -11,6 +11,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <memory>
 
 #include "IComponent.hpp"
 
@@ -38,7 +39,7 @@ namespace nts
         std::vector<std::pair<TypePin,
             std::vector<std::pair<IComponent &,
             std::size_t>>>> _inOuts;
-        std::vector<IComponent> _internComponents;
+        std::vector<std::unique_ptr<IComponent>> _internComponents;
         Tristate _lastValueComputed;
     };
 }
