@@ -3,9 +3,6 @@
 # Exit on error
 set -e
 
-# Remove build directory
-rm -rf build
-
 # Create build directory
 mkdir -p build
 cd build

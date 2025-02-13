@@ -41,8 +41,9 @@ namespace nts
         virtual size_t getIdFromPin(size_t pin) = 0;
         virtual std::vector<std::pair<TypePin,
                 std::vector<std::pair<IComponent &,
-                std::size_t>>>> getInOut() = 0;
+                std::size_t>>>> &getInOut() = 0;
         virtual std::string getName() = 0;
+        virtual Tristate getValueComputed() = 0;
     };
 }
 

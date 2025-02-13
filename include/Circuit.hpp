@@ -8,6 +8,9 @@
 #pragma once
 #include "AComponent.hpp"
 #include "AInput.hpp"
+#include "ComponentOutput.hpp"
+#include "ComponentClock.hpp"
+#include "ComponentInput.hpp"
 #include <iostream>
 #include <algorithm>
 #include <utility>
@@ -37,5 +40,6 @@ namespace nts {
             void display(void);
             void setValue(std::string const &name, nts::Tristate value);
             void addComponent(std::unique_ptr<IComponent> component);
+            IComponent &getComponent(std::string const &name);
     };
 }
