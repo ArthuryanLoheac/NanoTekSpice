@@ -6,6 +6,7 @@
 */
 
 #include "AComponent.hpp"
+#include <iostream>
 
 void nts::AComponent::simulate(std::size_t tick)
 {
@@ -26,8 +27,8 @@ void nts::AComponent::setLink(std::size_t pinOut, nts::IComponent &other,
         setLink(pinOut, *_internComponents[getIdFromPin(pinOut)],
             _internComponents[getIdFromPin(pinOut)]->pinOutToInternPin(pinOut));
     }
-    _inOuts[pinOut].second.push_back(std::make_pair(std::ref(other), pinIn));
-    other.getInOut()[pinIn].second.push_back(std::make_pair(std::ref(*this), pinOut));
+    _inOuts[pinOut - 1].second.push_back(std::make_pair(std::ref(other), pinIn));
+    other.getInOut()[pinIn - 1].second.push_back(std::make_pair(std::ref(*this), pinOut));
 }
 
 size_t nts::AComponent::pinOutToInternPin(size_t pin)
