@@ -14,7 +14,8 @@
 namespace nts
 {
     enum Tristate {
-        NOTCOMPUTED = -(true) + (-true),
+        COMPUTING = -3,
+        NOTCOMPUTED = -2,
         UNDEFINED = (-true),
         TRUE = true,
         FALSE = false
