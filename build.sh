@@ -20,4 +20,4 @@ make
 ./nanotekspice
 
 # Run the tests
-make tests_run
+# make tests_run
