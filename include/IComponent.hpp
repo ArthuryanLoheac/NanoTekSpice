@@ -9,9 +9,6 @@
 #define I_COMPONENT_HPP
 
 #include <cstddef>
-#include <string>
-#include <vector>
-#include <map>
 
 namespace nts
 {
@@ -39,12 +36,6 @@ namespace nts
                              std::size_t pinIn) = 0;
         virtual size_t pinOutToInternPin(size_t pin) = 0;
         virtual void setNotComputed() = 0;
-
-    protected:
-        std::string _name;
-        std::map<TypePin, std::map<IComponent &, std::size_t>> _inOuts;
-        std::vector<IComponent> _internComponents;
-        Tristate _lastValueComputed;
     };
 }
 
