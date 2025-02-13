@@ -32,7 +32,7 @@ namespace nts
             std::vector<std::pair<IComponent &,
             std::size_t>>>> &getInOut() override;
         std::string getName() override;
-        Tristate getValueComputed() override;
+        virtual Tristate getValueComputed() override;
 
     protected:
         AComponent(std::string name)

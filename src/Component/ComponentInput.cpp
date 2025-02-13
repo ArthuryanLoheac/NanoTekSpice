@@ -27,3 +27,8 @@ void nts::ComponentInput::setValue(nts::Tristate value)
 {
     _value = value;
 }
+
+nts::Tristate nts::ComponentInput::getValueComputed()
+{
+    return _value;
+}

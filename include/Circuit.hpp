@@ -40,6 +40,6 @@ namespace nts {
             void display(void);
             void setValue(std::string const &name, nts::Tristate value);
             void addComponent(std::unique_ptr<IComponent> component);
-            IComponent &getComponent(std::string const &name);
+            std::shared_ptr<IComponent> &getComponent(std::string const &name);
     };
 }

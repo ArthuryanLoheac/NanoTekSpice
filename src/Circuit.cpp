@@ -86,11 +86,11 @@ void nts::Circuit::addComponent(std::unique_ptr<IComponent> component)
     _internComponents.push_back(std::move(component));
 }
 
-nts::IComponent &nts::Circuit::getComponent(std::string const &name)
+std::shared_ptr<nts::IComponent> &nts::Circuit::getComponent(std::string const &name)
 {
     for (auto &component : _internComponents) {
         if (component->getName() == name)
-            return *component;
+            return component;
     }
     throw nts::Circuit::Errors("Component not found");
 }
