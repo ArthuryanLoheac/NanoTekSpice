@@ -3,8 +3,15 @@
 # Exit on error
 set -e
 
-# Remove build directory
-rm -rf build
+# Check for arguments
+if [ "$1" == "-f" ]; then
+    rm -rf build
+    exit 0
+elif [ "$1" == "-r" ]; then
+    rm -rf build
+    ./build.sh
+    exit 0
+fi
 
 # Create build directory
 mkdir -p build
@@ -16,11 +23,8 @@ cmake ..
 # Build
 make
 
-# Check for arguments
 if [ "$1" == "-t" ]; then
-    # Run the tests
     make tests_run
 else
-    # Run the program
     ./nanotekspice
 fi

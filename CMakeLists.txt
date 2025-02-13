@@ -29,12 +29,13 @@ target_link_libraries(unit_tests criterion gcov)
 
 # Set fclean target
 add_custom_target(fclean
-    COMMAND rm -rf ${PROJECT_NAME} unit_tests
+    COMMAND rm ${PROJECT_NAME}
+    COMMAND rm unit_tests
 )
 
 # Set re target
 add_custom_target(re
-    COMMAND fclean
+    COMMAND make fclean
     COMMAND make
 )
 
