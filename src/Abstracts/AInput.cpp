@@ -11,5 +11,5 @@ nts::AInput::AInput(std::string name) : AComponent(name)
 {
     _inOuts.push_back(std::make_pair(OUT,
         std::vector<std::pair<IComponent &, std::size_t>>()));
-    _lastValueComputed = UNDEFINED;
+    _ValueComputed = UNDEFINED;
 }

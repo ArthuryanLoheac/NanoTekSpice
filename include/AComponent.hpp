@@ -40,7 +40,8 @@ namespace nts
             std::vector<std::pair<IComponent &,
             std::size_t>>>> _inOuts;
         std::vector<std::unique_ptr<IComponent>> _internComponents;
-        Tristate _lastValueComputed;
+        Tristate _ValueComputed;
+        std::map<size_t, Tristate> _lastValue;
     };
 }
 
