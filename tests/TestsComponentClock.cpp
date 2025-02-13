@@ -20,13 +20,13 @@ Test(ComponentClock, simulate, .init=redirect_all_std)
 {
     nts::ComponentClock componentClock("Clock");
 
-    componentClock.simulate(0);
+    componentClock.simulate(2);
     cr_assert_eq(componentClock.compute(0), nts::UNDEFINED);
     componentClock.setValue(nts::TRUE);
-    componentClock.simulate(0);
-    cr_assert_eq(componentClock.compute(0), nts::FALSE);
-    componentClock.simulate(0);
+    componentClock.simulate(2);
     cr_assert_eq(componentClock.compute(0), nts::TRUE);
+    componentClock.simulate(1);
+    cr_assert_eq(componentClock.compute(0), nts::FALSE);
 }
 
 Test(ComponentClock, compute, .init=redirect_all_std)

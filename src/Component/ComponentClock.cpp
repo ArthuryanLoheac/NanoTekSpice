@@ -19,13 +19,14 @@ nts::ComponentClock::~ComponentClock()
 
 void nts::ComponentClock::simulate(std::size_t tick)
 {
-    (void)tick;
-    if (_value == nts::UNDEFINED)
-        return;
-    if (_value == nts::TRUE)
-        _value = nts::FALSE;
-    else
-        _value = nts::TRUE;
+    for (size_t i = 0; i < tick; i++) {
+        if (_value == nts::UNDEFINED)
+           break;
+        if (_value == nts::TRUE)
+            _value = nts::FALSE;
+        else
+            _value = nts::TRUE;
+    }
 }
 
 nts::Tristate nts::ComponentClock::compute(std::size_t pin)
