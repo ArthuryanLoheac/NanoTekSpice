@@ -28,8 +28,8 @@ nts::Tristate nts::ComponentAnd::compute(std::size_t pin)
 
     if (_ValueComputed == NOTCOMPUTED) {
         _ValueComputed = COMPUTING;
-        val1 = getVal(0, _inOuts);
-        val2 = getVal(1, _inOuts);
+        val1 = getVal(0);
+        val2 = getVal(1);
         _ValueComputed = andTristate(val1, val2);
     }
     return safeReturn(pin);

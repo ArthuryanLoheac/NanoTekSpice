@@ -14,7 +14,6 @@ namespace nts {
     {
         protected:
             ASingle(std::string name);
-            nts::Tristate getVal(int i, std::vector<std::pair<nts::TypePin,
-            std::vector<std::pair<nts::IComponent &, std::size_t>>>> _inOuts);
+            nts::Tristate getVal(int i);
     };    
 }
