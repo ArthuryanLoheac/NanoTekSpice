@@ -30,7 +30,6 @@ nts::Tristate nts::ComponentAnd::compute(std::size_t pin)
         _ValueComputed = COMPUTING;
         val1 = getVal(0, _inOuts);
         val2 = getVal(1, _inOuts);
-        printf("%s %d %d\n", _name.c_str(), val1, val2);
         _ValueComputed = andTristate(val1, val2);
     }
     return safeReturn(pin);
