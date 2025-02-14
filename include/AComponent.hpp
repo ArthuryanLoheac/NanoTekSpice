@@ -49,8 +49,7 @@ namespace nts
         virtual nts::Tristate safeReturn(std::size_t pin);
 
     protected:
-        AComponent(std::string name)
-            : _name(name) {};
+        AComponent(std::string name);
         std::string _name;
         std::vector<std::pair<TypePin,
             std::vector<std::pair<IComponent &,

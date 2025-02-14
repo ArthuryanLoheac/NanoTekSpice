@@ -40,7 +40,7 @@ size_t nts::AFourGates::getIdFromPin(size_t pin)
         return 2;
     if (pin == 11)
         return 3;
-    return 0;
+    throw nts::AComponent::Errors("Pin is not an output");
 }
 
 static std::pair<nts::TypePin, std::vector<std::pair<nts::IComponent &,

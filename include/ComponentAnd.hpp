@@ -5,8 +5,8 @@
 ** ComponentAnd.hpp
 */
 
-#ifndef COMPONENT_TRUE_HPP
-#define COMPONENT_TRUE_HPP
+#ifndef COMPONENT_AND_HPP
+#define COMPONENT_AND_HPP
 
 #include "ASingle.hpp"
 
@@ -20,4 +20,4 @@ namespace nts
     };
 }
 
-#endif /* !COMPONENT_TRUE_HPP */
+#endif /* !COMPONENT_AND_HPP */
