@@ -72,3 +72,11 @@ nts::Tristate nts::AComponent::getValueComputed()
 {
    return _ValueComputed;
 }
+
+nts::Tristate nts::AComponent::safeReturn(std::size_t pin)
+{
+    if (_ValueComputed == nts::COMPUTING)
+        return _lastValue[pin];
+    _lastValue[pin] = _ValueComputed;
+    return _ValueComputed;
+}

@@ -21,3 +21,11 @@ nts::ASingle::ASingle(std::string name) : AComponent(name)
     _inOuts.push_back(makePair(OUT));
     _ValueComputed = UNDEFINED;
 }
+
+nts::Tristate nts::ASingle::getVal(int i, std::vector<std::pair<
+nts::TypePin, std::vector<std::pair<nts::IComponent &, std::size_t>>>> _inOuts)
+{
+    if (_inOuts[i].second.size() == 0) 
+        return nts::UNDEFINED;
+    return _inOuts[i].second[0].first.compute(_inOuts[i].second[0].second);
+}
