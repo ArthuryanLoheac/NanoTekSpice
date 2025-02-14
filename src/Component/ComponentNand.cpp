@@ -12,7 +12,7 @@ nts::ComponentNand::ComponentNand(std::string name)
 {
 }
 
-static nts::Tristate andTristate(nts::Tristate val1, nts::Tristate val2)
+static nts::Tristate nandTristate(nts::Tristate val1, nts::Tristate val2)
 {
     if (val1 == nts::FALSE || val2 == nts::FALSE)
         return nts::TRUE;
@@ -30,7 +30,7 @@ nts::Tristate nts::ComponentNand::compute(std::size_t pin)
         _ValueComputed = COMPUTING;
         val1 = getVal(0, _inOuts);
         val2 = getVal(1, _inOuts);
-        _ValueComputed = andTristate(val1, val2);
+        _ValueComputed = nandTristate(val1, val2);
     }
     return safeReturn(pin);
 }
