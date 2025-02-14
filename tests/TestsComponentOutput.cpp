@@ -31,7 +31,7 @@ Test(ComponentOutput, computeLinkedTrue, .init=redirect_all_std)
     nts::ComponentTrue componentTrue("true");
 
     componentOutput.setNotComputed();
-    componentOutput.setLink(1, componentTrue, 1);
+    componentTrue.setLink(1, componentOutput, 1);
     cr_assert_eq(componentOutput.compute(0), nts::TRUE);
 }
 
@@ -41,7 +41,7 @@ Test(ComponentOutput, componentInput, .init=redirect_all_std)
     nts::ComponentInput componentInput("in");
 
     componentOutput.setNotComputed();
-    componentOutput.setLink(1, componentInput, 1);
+    componentInput.setLink(1, componentOutput, 1);
     cr_assert_eq(componentOutput.compute(0), nts::UNDEFINED);
     componentOutput.setNotComputed();
     componentInput.setValue(nts::TRUE);

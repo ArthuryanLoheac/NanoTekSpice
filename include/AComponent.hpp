@@ -20,6 +20,19 @@ namespace nts
     class AComponent : public IComponent
     {
     public:
+        class Errors : public std::exception
+        {
+            private:
+                std::string _message;
+            public:
+                Errors(std::string const &message)
+                    : _message(message) {};
+                const char *what() const noexcept override
+                {
+                    return _message.c_str();
+                }
+        };
+
         virtual ~AComponent() = default;
         virtual void simulate(std::size_t tick) override;
         virtual nts::Tristate compute(std::size_t pin) override;
