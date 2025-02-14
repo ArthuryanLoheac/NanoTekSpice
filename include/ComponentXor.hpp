@@ -5,8 +5,8 @@
 ** ComponentXor.hpp
 */
 
-#ifndef COMPONENT_AND_HPP
-#define COMPONENT_AND_HPP
+#ifndef COMPONENT_XOR_HPP
+#define COMPONENT_XOR_HPP
 
 #include "ASingle.hpp"
 
@@ -20,4 +20,4 @@ namespace nts
     };
 }
 
-#endif /* !COMPONENT_AND_HPP */
+#endif /* !COMPONENT_XOR_HPP */

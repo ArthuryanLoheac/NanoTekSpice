@@ -27,9 +27,9 @@ nts::Tristate nts::ASingle::getVal(int i, std::vector<std::pair<
 nts::TypePin, std::vector<std::pair<nts::IComponent &, std::size_t>>>> _inOuts)
 {
     if (_inOuts[i].second.size() == 0) 
-        _ValueComputed = nts::UNDEFINED;
+        _lastValue[i] = nts::UNDEFINED;
     else{
-        _ValueComputed =  _inOuts[i].second[0].first.compute(_inOuts[i].second[0].second);
+        _lastValue[i] =  _inOuts[i].second[0].first.compute(i);
     }
-    return _ValueComputed;
+    return _lastValue[i];
 }

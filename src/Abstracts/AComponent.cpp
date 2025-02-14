@@ -84,7 +84,7 @@ nts::Tristate nts::AComponent::safeReturn(std::size_t pin)
 nts::AComponent::AComponent(std::string name)
     : _name(name)
 {
-    for (size_t i = 0; i < _inOuts.size(); i++) {
+    for (size_t i = 0; i < 100; i++) {
         _lastValue[i] = UNDEFINED;
     }
 };
