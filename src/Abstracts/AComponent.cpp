@@ -35,9 +35,9 @@ void nts::AComponent::setLink(std::size_t pinOut, nts::IComponent &other,
     if (other.getInOut()[pinIn - 1].first == IN && other.getInOut()[pinIn - 1].second.size() > 0)
         throw nts::AComponent::Errors("PinIn is already linked");
     _inOuts[pinOut - 1].second.push_back(
-        std::make_pair(std::ref(other), pinIn));
+        std::make_pair(std::ref(other), other.getIdFromPin(pinIn)));
     other.getInOut()[pinIn - 1].second.push_back(
-        std::make_pair(std::ref(*this), pinOut));
+        std::make_pair(std::ref(*this), other.getIdFromPin(pinOut)));
 }
 
 size_t nts::AComponent::pinOutToInternPin(size_t pin)
@@ -72,3 +72,19 @@ nts::Tristate nts::AComponent::getValueComputed()
 {
    return _ValueComputed;
 }
+
+nts::Tristate nts::AComponent::safeReturn(std::size_t pin)
+{
+    if (_ValueComputed == nts::COMPUTING)
+        return _lastValue[pin];
+    _lastValue[pin] = _ValueComputed;
+    return _ValueComputed;
+}
+
+nts::AComponent::AComponent(std::string name)
+    : _name(name)
+{
+    for (size_t i = 0; i < _inOuts.size(); i++) {
+        _lastValue[i] = UNDEFINED;
+    }
+};
