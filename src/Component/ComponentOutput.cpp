@@ -27,6 +27,5 @@ nts::Tristate nts::ComponentOutput::compute(std::size_t pin)
             _ValueComputed = _inOuts[0].second[0].first.compute(_inOuts[0].second[0].second);
         }
     }
-    _lastValue[pin] = _ValueComputed;
-    return _ValueComputed;
+    return safeReturn(pin);
 }
