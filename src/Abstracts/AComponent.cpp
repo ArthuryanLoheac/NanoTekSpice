@@ -27,6 +27,10 @@ static void handlingErrorsLink(std::size_t pinOut, nts::IComponent &other,
         throw nts::AComponent::Errors("PinOut is out of bound");
     if ((pinIn - 1) > other.getInOut().size())
         throw nts::AComponent::Errors("PinIn is out of bound");
+    if (my.getInOut()[pinOut - 1].first == nts::IN && other.getInOut()[pinIn - 1].first == nts::IN)
+        throw nts::AComponent::Errors("PinOut and PinIn are both IN");
+    if (my.getInOut()[pinOut - 1].first == nts::OUT && other.getInOut()[pinIn - 1].first == nts::OUT)
+        throw nts::AComponent::Errors("PinOut and PinIn are both OUT");
     if (my.getInOut()[pinOut - 1].first == nts::IN &&
         my.getInOut()[pinOut - 1].second.size() > 0)
         throw nts::AComponent::Errors("PinOut is already linked");

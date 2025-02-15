@@ -12,6 +12,7 @@
 #include "../include/ComponentFalse.hpp"
 #include "../include/Component4081.hpp"
 #include "../include/ComponentInput.hpp"
+#include "../include/ComponentOutput.hpp"
 
 static void redirect_all_std(void)
 {
@@ -172,4 +173,64 @@ Test(Component4081, TwoComponentLinked_two, .init=redirect_all_std)
     component4081.setNotComputed();
     component4081_2.setNotComputed();
     cr_assert_eq(component4081_2.compute(0), nts::TRUE);
+}
+
+Test(Component4081, TwoComponentLinked_output, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::Component4081 component4081_2("4081_2");
+    nts::ComponentTrue componentTrue("t");
+    nts::ComponentOutput componentOutput("output");
+
+    component4081.setLink(5, componentTrue, 1);
+    component4081.setLink(6, componentTrue, 1);
+    component4081_2.setLink(8, componentTrue, 1);
+    component4081_2.setLink(9, component4081, 4);
+    componentOutput.setLink(1, component4081_2, 10);
+
+    component4081.setNotComputed();
+    component4081_2.setNotComputed();
+    componentOutput.setNotComputed();
+    cr_assert_eq(componentOutput.compute(0), nts::TRUE);
+}
+
+Test(Component4081, PinOut_and_PinIn_are_both_IN, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::ComponentTrue componentTrue("t1");
+
+    component4081.setLink(5, componentTrue, 1);
+    cr_assert_throw(component4081.setLink(6, component4081, 1), nts::AComponent::Errors);
+}
+
+Test(Component4081, PinOut_and_PinIn_are_both_OUT, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::ComponentTrue componentTrue("t1");
+
+    component4081.setLink(5, componentTrue, 1);
+    cr_assert_throw(component4081.setLink(3, component4081, 4), nts::AComponent::Errors);
+}
+
+Test(Component4081, autoLink, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::ComponentTrue componentTrue("t1");
+
+    component4081.setLink(5, componentTrue, 1);
+    component4081.setLink(6, component4081, 4);
+    component4081.setNotComputed();
+    cr_assert_eq(component4081.compute(0), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(3), nts::UNDEFINED);
+}
+
+Test(Component4081, linkToNoOutput, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::ComponentTrue componentTrue("t1");
+
+    component4081.setLink(5, componentTrue, 1);
+    cr_assert_throw(component4081.setLink(7, component4081, 4), nts::AComponent::Errors);
 }
