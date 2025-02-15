@@ -23,13 +23,15 @@ nts::Tristate nts::AComponent::compute(std::size_t pin)
 void nts::AComponent::setLink(std::size_t pinOut, nts::IComponent &other,
                               std::size_t pinIn)
 {
-    if (_internComponents.size() > 0)
-        setLink(pinOut, *_internComponents[getIdFromPin(pinOut)],
-            _internComponents[getIdFromPin(pinOut)]->pinOutToInternPin(pinOut));
+    if (_internComponents.size() > 0) {
+        _internComponents[getIdFromPin(pinOut)]->setLink(pinOutToInternPin(pinOut), other ,
+            _internComponents[getIdFromPin(pinOut)]->pinOutToInternPin(pinIn));
+        return;
+    }
     if ((pinOut - 1) > _inOuts.size())
-        throw nts::AComponent::Errors("PinOut is not a pin");
+        throw nts::AComponent::Errors("PinOut is out of bound");
     if ((pinIn - 1) > other.getInOut().size())
-        throw nts::AComponent::Errors("PinIn is is not a pin");
+        throw nts::AComponent::Errors("PinIn is out of bound");
     if (_inOuts[pinOut - 1].first == IN && _inOuts[pinOut - 1].second.size() > 0)
         throw nts::AComponent::Errors("PinOut is already linked");
     if (other.getInOut()[pinIn - 1].first == IN && other.getInOut()[pinIn - 1].second.size() > 0)

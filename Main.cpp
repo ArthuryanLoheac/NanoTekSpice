@@ -11,14 +11,14 @@
 #include "../include/ComponentFalse.hpp"
 #include "../include/ComponentXor.hpp"
 #include "../include/ComponentInput.hpp"
+#include "../include/Component4081.hpp"
 
-int main ( void )
-{
-    nts::ComponentXor componentXor("and");
-    nts::ComponentFalse componentFalse("1");
+int main() {
+    nts::Circuit circuit;
 
-    componentXor.setLink(3, componentXor, 2);
-    componentXor.setLink(1, componentFalse, 1);
-    componentXor.setNotComputed();
-    printf("ComponentXor: %d ? %d\n", componentXor.compute(0), nts::UNDEFINED);
+    circuit.addComponent(std::make_unique<nts::ComponentTrue>("true"));
+    circuit.addComponent(std::make_unique<nts::ComponentOutput>("output"));
+    circuit.getComponent("true").setLink(1, circuit.getComponent("output"), 1);
+    circuit.simulate(1);
+    circuit.display();
 }
