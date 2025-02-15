@@ -38,14 +38,16 @@ static void handlingErrorsLink(std::size_t pinOut, nts::IComponent &other,
 void nts::AComponent::setLink(std::size_t pinOut, nts::IComponent &other,
                               std::size_t pinIn)
 {
-    if (_internComponents.size() > 0) {
+    if (_internComponents.size() > 0){
         _internComponents[getIdFromPin(pinOut)]->setLink(
             pinOutToInternPin(pinOut), other,
             _internComponents[getIdFromPin(pinOut)]->pinOutToInternPin(pinIn));
         return;
     }
-    if (other.getInternComponents().size() > 0) {
-        other.setLink(pinIn, *this, pinOut);
+    if (other.getInternComponents().size() > 0){
+        other.getInternComponents()[other.getIdFromPin(pinIn)]->setLink(
+            other.pinOutToInternPin(pinIn), *this, other.getInternComponents()
+                [other.getIdFromPin(pinIn)]->pinOutToInternPin(pinOut));
         return;
     }
     handlingErrorsLink(pinOut, other, pinIn, *this);

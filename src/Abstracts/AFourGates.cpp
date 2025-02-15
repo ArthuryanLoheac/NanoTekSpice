@@ -9,10 +9,7 @@
 
 nts::Tristate nts::AFourGates::compute(std::size_t pin)
 {
-    if (_ValueComputed == NOTCOMPUTED) {
-        _ValueComputed = COMPUTING;
-        _ValueComputed = _internComponents[pin]->compute(0);
-    }
+    _ValueComputed = _internComponents[pin]->compute(0);
     return safeReturn(pin);
 }
 
@@ -22,7 +19,7 @@ size_t nts::AFourGates::pinOutToInternPin(size_t pin)
         return 1;
     if (pin == 2 || pin == 6 || pin == 9 || pin == 13)
         return 2;
-    if (pin == 3 || pin == 7 || pin == 10 || pin == 14)
+    if (pin == 3 || pin == 4 || pin == 10 || pin == 11)
         return 3;
     return 0;
 }

@@ -25,11 +25,8 @@ Test(Component4081, defaultStat, .init=redirect_all_std)
 
     component4081.setNotComputed();
     cr_assert_eq(component4081.compute(0), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(3), nts::UNDEFINED);
 }
 
@@ -44,11 +41,8 @@ Test(Component4081, firstTrue, .init=redirect_all_std)
 
     component4081.setNotComputed();
     cr_assert_eq(component4081.compute(0), nts::TRUE);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(3), nts::UNDEFINED);
 }
 
@@ -63,11 +57,8 @@ Test(Component4081, SecondTrue, .init=redirect_all_std)
 
     component4081.setNotComputed();
     cr_assert_eq(component4081.compute(0), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(1), nts::TRUE);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(3), nts::UNDEFINED);
 }
 Test(Component4081, ThreeTrue, .init=redirect_all_std)
@@ -81,11 +72,8 @@ Test(Component4081, ThreeTrue, .init=redirect_all_std)
 
     component4081.setNotComputed();
     cr_assert_eq(component4081.compute(0), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(2), nts::TRUE);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(3), nts::UNDEFINED);
 }
 Test(Component4081, FourTrue, .init=redirect_all_std)
@@ -99,11 +87,8 @@ Test(Component4081, FourTrue, .init=redirect_all_std)
 
     component4081.setNotComputed();
     cr_assert_eq(component4081.compute(0), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(3), nts::TRUE);
 }
 
@@ -118,10 +103,73 @@ Test(Component4081, FourTrueInverted_Sens, .init=redirect_all_std)
 
     component4081.setNotComputed();
     cr_assert_eq(component4081.compute(0), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
-    component4081.setNotComputed();
     cr_assert_eq(component4081.compute(3), nts::TRUE);
+}
+
+Test(Component4081, FourTrueMultiple, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::ComponentTrue componentTrue1("t1");
+    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentFalse componentFalse("f1");
+
+    componentTrue1.setLink(1, component4081, 13);
+    componentTrue2.setLink(1, component4081, 12);
+    component4081.setLink(1, componentTrue1, 1);
+    component4081.setLink(2, componentFalse, 1);
+
+    component4081.setNotComputed();
+    cr_assert_eq(component4081.compute(0), nts::FALSE);
+    cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(3), nts::TRUE);
+}
+
+Test(Component4081, SecondTrueNotComputed, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::ComponentTrue componentTrue1("t1");
+    nts::ComponentTrue componentTrue2("t2");
+
+    component4081.setLink(5, componentTrue1, 1);
+    component4081.setLink(6, componentTrue2, 1);
+
+    cr_assert_eq(component4081.compute(0), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(1), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(2), nts::UNDEFINED);
+    cr_assert_eq(component4081.compute(3), nts::UNDEFINED);
+}
+
+Test(Component4081, TwoComponentLinked, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::Component4081 component4081_2("4081_2");
+    nts::ComponentTrue componentTrue("t");
+
+    component4081.setLink(1, componentTrue, 1);
+    component4081.setLink(2, componentTrue, 1);
+    component4081_2.setLink(2, componentTrue, 1);
+    component4081_2.setLink(1, component4081, 3);
+
+    component4081.setNotComputed();
+    component4081_2.setNotComputed();
+    cr_assert_eq(component4081_2.compute(0), nts::TRUE);
+}
+
+Test(Component4081, TwoComponentLinked_two, .init=redirect_all_std)
+{
+    nts::Component4081 component4081("4081");
+    nts::Component4081 component4081_2("4081_2");
+    nts::ComponentTrue componentTrue("t");
+
+    component4081.setLink(5, componentTrue, 1);
+    component4081.setLink(6, componentTrue, 1);
+    component4081_2.setLink(2, componentTrue, 1);
+    component4081_2.setLink(1, component4081, 4);
+
+    component4081.setNotComputed();
+    component4081_2.setNotComputed();
+    cr_assert_eq(component4081_2.compute(0), nts::TRUE);
 }

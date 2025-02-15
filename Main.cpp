@@ -14,11 +14,16 @@
 #include "../include/Component4081.hpp"
 
 int main() {
-    nts::Circuit circuit;
+    nts::Component4081 component4081("4081");
+    nts::Component4081 component4081_2("4081_2");
+    nts::ComponentTrue componentTrue("t");
 
-    circuit.addComponent(std::make_unique<nts::ComponentTrue>("true"));
-    circuit.addComponent(std::make_unique<nts::ComponentOutput>("output"));
-    circuit.getComponent("true").setLink(1, circuit.getComponent("output"), 1);
-    circuit.simulate(1);
-    circuit.display();
+    component4081.setLink(5, componentTrue, 1);
+    component4081.setLink(6, componentTrue, 1);
+    component4081_2.setLink(2, componentTrue, 1);
+    component4081_2.setLink(1, component4081, 4);
+
+    component4081.setNotComputed();
+    component4081_2.setNotComputed();
+    printf("%d ? %d\n", component4081_2.compute(0), nts::TRUE);
 }
