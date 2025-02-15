@@ -9,17 +9,16 @@
 #include "Circuit.hpp"
 #include "../include/ComponentTrue.hpp"
 #include "../include/ComponentFalse.hpp"
-#include "../include/ComponentAnd.hpp"
+#include "../include/ComponentXor.hpp"
 #include "../include/ComponentInput.hpp"
 
 int main ( void )
 {
-    nts::ComponentAnd componentAnd("and");
-    nts::ComponentAnd componentAnd2("and2");
+    nts::ComponentXor componentXor("and");
+    nts::ComponentFalse componentFalse("1");
 
-    componentAnd.setLink(3, componentAnd2, 2);
-    componentAnd2.setLink(3, componentAnd, 1);
-    componentAnd2.setNotComputed();
-    componentAnd.setNotComputed();
-    printf("%d ? -1\n", componentAnd.compute(0));
+    componentXor.setLink(3, componentXor, 2);
+    componentXor.setLink(1, componentFalse, 1);
+    componentXor.setNotComputed();
+    printf("ComponentXor: %d ? %d\n", componentXor.compute(0), nts::UNDEFINED);
 }
