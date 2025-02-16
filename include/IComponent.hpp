@@ -45,6 +45,7 @@ namespace nts
         virtual std::string getName() = 0;
         virtual Tristate getValueComputed() = 0;
         virtual nts::Tristate safeReturn(std::size_t pin) = 0;
+        virtual std::vector<std::shared_ptr<IComponent>> &getInternComponents() = 0;
     };
 }
 

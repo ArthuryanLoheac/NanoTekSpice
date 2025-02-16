@@ -47,6 +47,7 @@ namespace nts
         std::string getName() override;
         virtual Tristate getValueComputed() override;
         virtual nts::Tristate safeReturn(std::size_t pin);
+        virtual std::vector<std::shared_ptr<IComponent>> &getInternComponents() override;
 
     protected:
         AComponent(std::string name);
