@@ -6,5 +6,7 @@
 */
 
 #pragma once
+#include <vector>
 
-int parseFile(const char *file);
+std::string parseFile(const char *file);
+std::vector<std::string> parseByLine(std::string content);
