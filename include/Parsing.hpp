@@ -7,4 +7,4 @@
 
 #pragma once
 
-int parseFile(char *file);
+int parseFile(const char *file);

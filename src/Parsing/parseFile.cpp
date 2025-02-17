@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 
-int parseFile(char *file)
+int parseFile(const char *file)
 {
     std::ifstream f(file);
     std::string content;

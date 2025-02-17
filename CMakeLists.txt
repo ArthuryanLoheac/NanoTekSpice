@@ -42,6 +42,6 @@ add_custom_target(re
 # Set tests_run target
 add_custom_target(tests_run
     COMMAND ./unit_tests
-    COMMAND gcovr -r ${CMAKE_SOURCE_DIR} --exclude tests/ --exclude CMakeFiles/
+    COMMAND gcovr -r ${CMAKE_SOURCE_DIR} --exclude ../tests/ --exclude CMakeFiles/
     DEPENDS unit_tests
 )
