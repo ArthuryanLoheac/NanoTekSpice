@@ -26,5 +26,5 @@ make -j$(nproc)
 if [ "$1" == "-t" ]; then
     make tests_run
 else
-    ./nanotekspice
+    ./nanotekspice ../tests/Exemple/nts_single/xor.nts
 fi
