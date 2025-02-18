@@ -24,7 +24,11 @@ cmake ..
 make -j$(nproc)
 
 if [ "$1" == "-t" ]; then
-    make tests_run
+    make unit_tests
+    cp ./unit_tests ../unit_tests
+    cd ..
+    ./unit_tests
+    gcovr --exclude tests/ --exclude CMakeFiles/
 else
-    ./nanotekspice
+    ./nanotekspice ../tests/Exemple/nts_single/xor.nts
 fi
