@@ -1,7 +1,7 @@
 # Basic XOR logic gate
-#
+   #
 # in_1  -1-+---\
-#          |xor |-3- out
+        #          |xor |-3- out
 # in_2  -2-+---/
 
 .chipsets:
@@ -11,6 +11,6 @@ output out
 xor gate
 
 .links:
-in_1:1 gate:1 #commentary
+in_1:1 gate:1           #commentary
 in_2:1 gate:2
 out:1 gate:3

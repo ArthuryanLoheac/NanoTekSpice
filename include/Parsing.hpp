@@ -10,3 +10,6 @@
 
 std::string parseFile(const char *file);
 std::vector<std::string> parseByLine(std::string content);
+std::vector<std::string> removeCommentary(std::vector<std::string> content);
+std::vector<std::string> getPartList(std::vector<std::string> lines,
+    std::string start, std::string stop);

@@ -12,10 +12,22 @@ static int run(const char *file)
 {
     std::string content;
     std::vector<std::string> lines;
+    std::vector<std::string> withoutCommentary;
+    std::vector<std::string> chipsets;
+    std::vector<std::string> links;
     
     try {
         content = parseFile(file);
         lines = parseByLine(content);
+        withoutCommentary = removeCommentary(lines);
+        chipsets = getPartList(withoutCommentary, ".chipsets:", ".links:");
+        links = getPartList(withoutCommentary, ".links:", ".chipsets:");
+        std::cout << "- Chipsets:" << std::endl;
+        for (size_t i = 0; i < chipsets.size(); i++)
+            std::cout << chipsets[i] << std::endl;
+        std::cout << "- Links:" << std::endl;
+        for (size_t i = 0; i < links.size(); i++)
+            std::cout << links[i] << std::endl;
         return 0;
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
