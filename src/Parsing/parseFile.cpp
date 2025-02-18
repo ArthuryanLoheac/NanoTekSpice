@@ -22,6 +22,39 @@ static std::string without_right_spaces_and_tab(const std::string& str) {
     return std::string(str.begin(), it.base());
 }
 
+static void ParseBySpacesAndTab(std::stringstream &stream, std::string &word,
+    std::vector<std::string> &newLine)
+{
+    std::stringstream stream2;
+    std::string word2;
+
+    word.clear();
+    newLine.clear();
+    while (std::getline(stream, word, ' ')){
+        word2.clear();
+        stream2 = std::stringstream(word);
+        while (std::getline(stream2, word2, '\t')){
+            newLine.push_back(word2);
+        }
+    }
+}
+
+std::vector<std::vector<std::string>> ParseBySpaces(
+    std::vector<std::string> lines)
+{
+    std::vector<std::vector<std::string>> newLines;
+    std::vector<std::string> newLine;
+    std::stringstream stream;
+    std::string word;
+
+    for (std::string line : lines) {
+        stream = std::stringstream(line);
+        ParseBySpacesAndTab(stream, word, newLine);
+        newLines.push_back(newLine);
+    }
+    return newLines;
+}
+
 std::vector<std::string> getPartList(std::vector<std::string> lines,
     std::string start, std::string stop)
 {
