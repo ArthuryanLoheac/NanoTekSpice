@@ -8,10 +8,10 @@
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
 
-#include "../include/Component4069.hpp"
-#include "../include/ComponentTrue.hpp"
-#include "../include/ComponentFalse.hpp"
-#include "../include/ComponentInput.hpp"
+#include "Component4069.hpp"
+#include "ComponentTrue.hpp"
+#include "ComponentFalse.hpp"
+#include "ComponentInput.hpp"
 
 static void redirect_all_std(void)
 {
@@ -65,8 +65,8 @@ Test(Component4069, errorCase, .init=redirect_all_std)
     nts::ComponentTrue componentTrue("true");
     nts::ComponentFalse componentFalse("false");
 
-    component4069.setLink(5, componentTrue, 1);
-    component4069.setLink(13, componentFalse, 1);
+    cr_assert_eq(component4069.pinOutToInternPin(0), 0);
+    cr_assert_eq(component4069.pinOutToInternPin(2), 2);
 
     component4069.setNotComputed();
     cr_assert_throw(component4069.setLink(0, component4069, 0), nts::AComponent::Errors);
