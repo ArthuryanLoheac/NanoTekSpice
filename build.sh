@@ -6,9 +6,13 @@ set -e
 # Check for arguments
 if [ "$1" == "-f" ]; then
     rm -rf build
+    rm -f nanotekspice
+    rm -f unit_tests
     exit 0
 elif [ "$1" == "-r" ]; then
     rm -rf build
+    rm -f nanotekspice
+    rm -f unit_tests
     ./build.sh
     exit 0
 fi
@@ -23,12 +27,14 @@ cmake ..
 # Build
 make -j$(nproc)
 
+# Copy binary to root
+cp ./nanotekspice ../nanotekspice
+cp ./unit_tests ../unit_tests
+cd ..
+
 if [ "$1" == "-t" ]; then
-    make unit_tests
-    cp ./unit_tests ../unit_tests
-    cd ..
     ./unit_tests
-    gcovr --exclude tests/ --exclude CMakeFiles/
+    gcovr --exclude include/ --exclude tests/ --exclude CMakeFiles/
 else
-    ./nanotekspice ../tests/Exemple/nts_single/xor.nts
+    ./nanotekspice $1
 fi

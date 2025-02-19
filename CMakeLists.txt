@@ -9,8 +9,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 
-# Include the headers directory
+# Include the headers directories
 include_directories(${CMAKE_SOURCE_DIR}/include)
+file(GLOB_RECURSE HEADER_FILES "include/**/*.hpp")
+foreach(HEADER_FILE ${HEADER_FILES})
+    get_filename_component(HEADER_DIR ${HEADER_FILE} DIRECTORY)
+    include_directories(${HEADER_DIR})
+endforeach()
 
 # Set the sources files
 set(MAIN Main.cpp)
