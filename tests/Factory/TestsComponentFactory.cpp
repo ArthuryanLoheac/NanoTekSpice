@@ -34,7 +34,7 @@ Test(Factory, createComponent, .init = redirect_all_std)
     cr_assert_eq(factory.createComponent("4030")->getName(), "4030");
     cr_assert_eq(factory.createComponent("4071")->getName(), "4071");
     cr_assert_eq(factory.createComponent("4081")->getName(), "4081");
-    // cr_assert_eq(factory.createComponent("4069")->getName(), "4069");
+    cr_assert_eq(factory.createComponent("4069")->getName(), "4069");
 }
 
 Test(Factory, createComponent_invalid, .init = redirect_all_std)
