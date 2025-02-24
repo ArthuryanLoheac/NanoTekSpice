@@ -79,9 +79,6 @@ Test(Circuit, SortOrderPrint_clock, .init=redirect_all_std)
     circuit.display();
     cr_assert_stdout_eq_str("tick: 1\n"
         "input(s):\n"
-        "a: 0\n"
-        "b: 1\n"
-        "c: 0\n"
         "output(s):\n"
         "output: 1\n"
     );

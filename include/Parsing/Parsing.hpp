@@ -9,6 +9,7 @@
 #define PARSING_HPP
 
 #include <iostream>
+#include <vector>
 
 std::string parseFile(const char *file);
 std::vector<std::string> parseByLine(std::string content);
@@ -17,5 +18,6 @@ std::vector<std::string> getPartList(std::vector<std::string> lines,
     std::string start, std::string stop);
 std::vector<std::vector<std::string>> ParseBySpaces(
     std::vector<std::string> lines);
+int parse(const char *file);
 
 #endif /* !PARSING_HPP */
