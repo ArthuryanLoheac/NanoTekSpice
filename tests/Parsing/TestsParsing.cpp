@@ -9,6 +9,7 @@
 #include <criterion/redirect.h>
 
 #include "Parsing.hpp"
+#include <filesystem>
 
 static void redirect_all_std(void)
 {
