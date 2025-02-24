@@ -16,7 +16,5 @@ foreach(HEADER_FILE ${HEADER_FILES})
     include_directories(${HEADER_DIR})
 endforeach()
 
-include_directories(${CMAKE_SOURCE_DIR}/include)
-
 #create exectuable hello from hello_world.c
 add_executable(${PROJECT_NAME} ${NANO_SRC})

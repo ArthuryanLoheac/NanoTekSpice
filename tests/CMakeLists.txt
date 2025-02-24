@@ -1,8 +1,5 @@
 file(GLOB_RECURSE TEST_SRC "./**/*.cpp" "../src/**.cpp" "./**/*.nts")
 
-file(GLOB_RECURSE EXAMPLE_FILES "./Exemple/*.cpp")
-list(APPEND TEST_SRC ${EXAMPLE_FILES})
-
 add_executable(unit_tests ${TEST_SRC})
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
