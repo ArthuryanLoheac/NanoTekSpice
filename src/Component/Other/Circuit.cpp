@@ -51,8 +51,7 @@ void nts::Circuit::display(void)
     std::vector<std::shared_ptr<nts::IComponent>> outputs;
 
     for (auto &component : _internComponents) {
-        if (dynamic_cast<nts::ComponentClock *>(component.get()) ||
-            dynamic_cast<nts::ComponentInput *>(component.get()))
+        if (dynamic_cast<nts::ComponentInput *>(component.get()))
             inputs.push_back(component);
         if (dynamic_cast<nts::ComponentOutput *>(component.get()))
             outputs.push_back(component);
