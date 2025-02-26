@@ -22,6 +22,30 @@ std::vector<std::string> splitString(const std::string& str, const std::string& 
     return result;
 }
 
+static int loop(nts::Circuit &circuit)
+{
+    while (1) {
+        circuit.simulate(1);
+        circuit.display();
+    }
+    return 0;
+}
+
+static int assignValue(nts::Circuit &circuit, std::vector<std::string> parts)
+{
+    std::vector<std::string> value = splitString(parts[0], "=");
+
+    if (value.size() != 2)
+        return 0;
+    if (value[1] == "U")
+        circuit.setValue(value[0], nts::Tristate::UNDEFINED);
+    if (value[1] == "0")
+        circuit.setValue(value[0], nts::Tristate::FALSE);
+    if (value[1] == "1")
+        circuit.setValue(value[0], nts::Tristate::TRUE);
+    return 0;
+}
+
 static int analyseCommand(nts::Circuit &circuit, std::string input)
 {
     std::vector<std::string> parts = splitString(input, " \t");
@@ -32,6 +56,12 @@ static int analyseCommand(nts::Circuit &circuit, std::string input)
         return 1;
     if (parts[0] == "display")
         circuit.display();
+    if (parts[0] == "simulate")
+        circuit.simulate(1);
+    if (parts[0] == "loop")
+        loop(circuit);
+    if (parts.size() == 1)
+        return assignValue(circuit, parts);
     return 0;
 }
 

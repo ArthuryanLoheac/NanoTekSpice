@@ -29,7 +29,7 @@ Test(Circuit, True_Output, .init=redirect_all_std)
     circuit.getComponent("true").setLink(1, circuit.getComponent("output"), 1);
     circuit.simulate(1);
     circuit.display();
-    cr_assert_stdout_eq_str("tick: 1\ninput(s):\noutput(s):\noutput: 1\n");
+    cr_assert_stdout_eq_str("tick: 1\ninput(s):\noutput(s):\n  output: 1\n");
 }
 
 Test(Circuit, compute, .init=redirect_all_std)
@@ -55,11 +55,11 @@ Test(Circuit, SortOrderPrint, .init=redirect_all_std)
     circuit.display();
     cr_assert_stdout_eq_str("tick: 1\n"
         "input(s):\n"
-        "a: 1\n"
-        "b: 0\n"
-        "c: 1\n"
+        "  a: 1\n"
+        "  b: 0\n"
+        "  c: 1\n"
         "output(s):\n"
-        "output: 0\n"
+        "  output: 0\n"
     );
 }
 
@@ -79,8 +79,11 @@ Test(Circuit, SortOrderPrint_clock, .init=redirect_all_std)
     circuit.display();
     cr_assert_stdout_eq_str("tick: 1\n"
         "input(s):\n"
+        "  a: 0\n"
+        "  b: 1\n"
+        "  c: 0\n"
         "output(s):\n"
-        "output: 1\n"
+        "  output: 1\n"
     );
 }
 
@@ -112,3 +115,4 @@ Test(Circuit, CatchNotExisting2, .init=redirect_all_std)
 
     cr_assert_throw(circuit.getComponent("b"), nts::Circuit::Errors);
 }
+
