@@ -42,7 +42,9 @@ static void displayVector(std::vector<std::shared_ptr<nts::IComponent>> vec)
         return a->getName() < b->getName();
     });
     for (auto &v : vec)
-        std::cout << v->getName() << ": " << v->getValueComputed() << std::endl;
+        std::cout << "  " << v->getName() << ": " <<
+            ((v->getValueComputed() == nts::UNDEFINED) ?
+            "U" : std::to_string(v->getValueComputed())) << std::endl;
 }
 
 void nts::Circuit::display(void)
@@ -52,6 +54,8 @@ void nts::Circuit::display(void)
 
     for (auto &component : _internComponents) {
         if (dynamic_cast<nts::ComponentInput *>(component.get()))
+            inputs.push_back(component);
+        if (dynamic_cast<nts::ComponentClock *>(component.get()))
             inputs.push_back(component);
         if (dynamic_cast<nts::ComponentOutput *>(component.get()))
             outputs.push_back(component);
