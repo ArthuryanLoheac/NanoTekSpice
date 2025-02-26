@@ -31,22 +31,6 @@ static int loop(nts::Circuit &circuit)
     return 0;
 }
 
-static int simulateArgs(nts::Circuit &circuit, std::vector<std::string> parts)
-{
-    int ticks = 1;
-
-    if (parts.size() > 1) {
-        try {
-            ticks = std::stoi(parts[1]);
-        } catch (const std::exception &e) {
-            std::cerr << "Invalid  number of ticks" << std::endl;
-            return 0;
-        }
-    }
-    circuit.simulate(ticks);
-    return 0;
-}
-
 static int assignValue(nts::Circuit &circuit, std::vector<std::string> parts)
 {
     std::vector<std::string> value = splitString(parts[0], "=");
@@ -73,7 +57,7 @@ static int analyseCommand(nts::Circuit &circuit, std::string input)
     if (parts[0] == "display")
         circuit.display();
     if (parts[0] == "simulate")
-        return simulateArgs(circuit, parts);
+        circuit.simulate(1);
     if (parts[0] == "loop")
         loop(circuit);
     if (parts.size() == 1)
