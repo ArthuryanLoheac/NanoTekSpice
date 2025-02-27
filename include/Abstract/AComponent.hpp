@@ -36,6 +36,10 @@ namespace nts
         virtual Tristate getValueComputed() override;
         virtual nts::Tristate safeReturn(std::size_t pin);
         virtual std::vector<std::shared_ptr<IComponent>> &getInternComponents() override;
+        std::pair<nts::TypePin, std::vector<std::pair<nts::IComponent &,
+            std::size_t>>> makeEmptyPair(nts::TypePin type);
+        void handlingErrorsLink(std::size_t pinOut, nts::IComponent &other,
+                              std::size_t pinIn, nts::IComponent &my);
         class Errors : public std::exception
         {
         public:

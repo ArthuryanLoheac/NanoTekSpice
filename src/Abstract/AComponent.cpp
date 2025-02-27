@@ -20,7 +20,7 @@ nts::Tristate nts::AComponent::compute(std::size_t pin)
     return _ValueComputed;
 }
 
-static void handlingErrorsLink(std::size_t pinOut, nts::IComponent &other,
+void nts::AComponent::handlingErrorsLink(std::size_t pinOut, nts::IComponent &other,
                               std::size_t pinIn, nts::IComponent &my)
 {
     if ((pinOut - 1) > my.getInOut().size())
@@ -110,6 +110,11 @@ nts::Tristate nts::AComponent::safeReturn(std::size_t pin)
 std::vector<std::shared_ptr<nts::IComponent>> &nts::AComponent::getInternComponents()
 {
     return _internComponents;
+}
+
+std::pair<nts::TypePin, std::vector<std::pair<nts::IComponent &, std::size_t>>> nts::AComponent::makeEmptyPair(nts::TypePin type)
+{
+    return std::make_pair(type, std::vector<std::pair<nts::IComponent &, std::size_t>>());
 }
 
 nts::AComponent::AComponent(std::string name)
