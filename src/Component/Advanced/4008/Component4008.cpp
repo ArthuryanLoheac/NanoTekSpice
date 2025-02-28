@@ -22,17 +22,17 @@ nts::Component4008::Component4008(std::string name)
         _inOuts.push_back(makeEmptyPair(TypePin::OUT));
     _inOuts.push_back(makeEmptyPair(TypePin::IN));
     _inOuts.push_back(makeEmptyPair(TypePin::USELESS));
-    _internComponents[0]->setLink(4, *_internComponents[1], 1);
-    _internComponents[1]->setLink(4, *_internComponents[2], 1);
-    _internComponents[2]->setLink(4, *_internComponents[3], 1);
+    _internComponents[0]->setLink(4, *_internComponents[1].get()->getInternComponents()[0], 1);
+    _internComponents[0]->setLink(4, *_internComponents[1].get()->getInternComponents()[1], 1);
+    _internComponents[1]->setLink(4, *_internComponents[2].get()->getInternComponents()[0], 1);
+    _internComponents[1]->setLink(4, *_internComponents[2].get()->getInternComponents()[1], 1);
+    _internComponents[2]->setLink(4, *_internComponents[3].get()->getInternComponents()[0], 1);
+    _internComponents[2]->setLink(4, *_internComponents[3].get()->getInternComponents()[1], 1);
 }
 
 nts::Tristate nts::Component4008::compute(std::size_t pin)
 {
-    printf("Compute %ld\n", pin);
-    if (pin == 0)
-        return _internComponents[0]->compute(0);
-    return safeReturn(pin);
+    return _internComponents[pin]->compute(pin);
 }
 
 size_t nts::Component4008::pinOutToInternPin(size_t pin)

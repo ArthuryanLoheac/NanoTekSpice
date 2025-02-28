@@ -27,9 +27,9 @@ nts::ComponentSum::ComponentSum(std::string name)
 
 nts::Tristate nts::ComponentSum::getVal(int i)
 {
-    if (_inOuts[i].second.size() == 0)
+    if (_inOuts[i].second.size() == 0) {
         _lastValue[i] = nts::UNDEFINED;
-    else{
+    } else{
         _lastValue[i] = _inOuts[i].second[0].first.compute(i);
     }
     return _lastValue[i];
@@ -37,11 +37,7 @@ nts::Tristate nts::ComponentSum::getVal(int i)
 
 nts::Tristate nts::ComponentSum::compute(std::size_t pin)
 {
-    if (pin == 0)
-        return _internComponents[0]->compute(0);
-    if (pin == 1)
-        return _internComponents[1]->compute(0);
-    return nts::UNDEFINED;
+    return _internComponents[pin]->compute(pin);
 }
 
 size_t nts::ComponentSum::pinOutToInternPin(size_t pin)
