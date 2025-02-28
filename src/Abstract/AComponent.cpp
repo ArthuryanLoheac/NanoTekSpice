@@ -68,6 +68,8 @@ size_t nts::AComponent::pinOutToInternPin(size_t pin)
 
 void nts::AComponent::setNotComputed()
 {
+    for (auto &elem : _internComponents)
+        elem->setNotComputed();
     _ValueComputed = NOTCOMPUTED;
 }
 
