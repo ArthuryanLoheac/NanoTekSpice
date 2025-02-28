@@ -10,15 +10,19 @@
 #include "ComponentCo.hpp"
 
 nts::ComponentSum::ComponentSum(std::string name)
-    : AComponent(name)
+    : AComponent("Add")
 {
+    static int i = -1;
+    static int j = 0;
+    i += 2;
+    j += 2;
     _inOuts.push_back(makeEmptyPair(TypePin::IN));
     _inOuts.push_back(makeEmptyPair(TypePin::IN));
     _inOuts.push_back(makeEmptyPair(TypePin::IN));
     _inOuts.push_back(makeEmptyPair(TypePin::OUT));
     _inOuts.push_back(makeEmptyPair(TypePin::OUT));
-    _internComponents.push_back(std::make_shared<ComponentCo>(""));
-    _internComponents.push_back(std::make_shared<ComponentSum_l>(""));
+    _internComponents.push_back(std::make_shared<ComponentCo>(std::to_string(i)));
+    _internComponents.push_back(std::make_shared<ComponentSum_l>(std::to_string(j)));
 }
 
 nts::Tristate nts::ComponentSum::getVal(int i)
@@ -33,9 +37,9 @@ nts::Tristate nts::ComponentSum::getVal(int i)
 
 nts::Tristate nts::ComponentSum::compute(std::size_t pin)
 {
-    if (pin == 0 || pin == 4)
+    if (pin == 0)
         return _internComponents[0]->compute(0);
-    if (pin == 1 || pin == 5)
+    if (pin == 1)
         return _internComponents[1]->compute(0);
     return nts::UNDEFINED;
 }
@@ -67,14 +71,24 @@ void nts::ComponentSum::setNotComputed()
 
 void nts::ComponentSum::setLink(std::size_t pinOut, IComponent &other, std::size_t pinIn)
 {
-    if (_internComponents.size() > 0){
+    if (_internComponents.size() > 0 && pinOut < 4) {
         //Force set link to both internal components
         _internComponents[0]->setLink(
             pinOutToInternPin(pinOut), other,
-            _internComponents[getIdFromPin(pinOut)]->pinOutToInternPin(pinIn));
+            _internComponents[0]->pinOutToInternPin(pinIn));
         _internComponents[1]->setLink(
             pinOutToInternPin(pinOut), other,
-            _internComponents[getIdFromPin(pinOut)]->pinOutToInternPin(pinIn));
+            _internComponents[1]->pinOutToInternPin(pinIn));
+        return;
+    } else if (_internComponents.size() > 0 && pinOut == 4) {
+        _internComponents[0]->setLink(
+            pinOutToInternPin(pinOut), other,
+            _internComponents[0]->pinOutToInternPin(pinIn));
+        return;
+    } else if (_internComponents.size() > 0 && pinOut == 5) {
+        _internComponents[1]->setLink(
+            pinOutToInternPin(pinOut), other,
+            _internComponents[1]->pinOutToInternPin(pinIn));
         return;
     }
     if (other.getInternComponents().size() > 0){
