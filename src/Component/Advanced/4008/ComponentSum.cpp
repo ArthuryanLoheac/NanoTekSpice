@@ -10,7 +10,7 @@
 #include "ComponentCo.hpp"
 
 nts::ComponentSum::ComponentSum(std::string name)
-    : AComponent("Add")
+    : AComponent(name)
 {
     static int i = -1;
     static int j = 0;

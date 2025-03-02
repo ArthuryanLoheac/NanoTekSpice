@@ -8,12 +8,6 @@
 #include "Component4069.hpp"
 #include "ComponentNot.hpp"
 
-static std::pair<nts::TypePin, std::vector<std::pair<nts::IComponent &,
-    std::size_t>>> makeEmptyPair(nts::TypePin type)
-{
-    return std::make_pair(type, std::vector<std::pair<nts::IComponent &, std::size_t>>());
-}
-
 nts::Component4069::Component4069(std::string name)
     : AComponent(name)
 {

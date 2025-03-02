@@ -44,12 +44,6 @@ size_t nts::AFourGates::getIdFromPin(size_t pin)
     throw nts::AComponent::Errors("Pin is not an output");
 }
 
-static std::pair<nts::TypePin, std::vector<std::pair<nts::IComponent &,
-    std::size_t>>> makeEmptyPair(nts::TypePin type)
-{
-    return std::make_pair(type, std::vector<std::pair<nts::IComponent &, std::size_t>>());
-}
-
 nts::AFourGates::AFourGates(std::string name)
     : AComponent(name)
 {

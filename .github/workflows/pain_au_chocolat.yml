@@ -54,9 +54,7 @@ jobs:
         uses: actions/checkout@v4
       - name: "Make"
         timeout-minutes: 2
-        run: |
-          cmake . -B ./build -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
+        run: make
       - name: "Check existing executables"
         run: |
           LIST=$(echo $EXECUTABLES | tr ',' ' ')
@@ -70,9 +68,7 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
       - name: "Make"
-        run: |
-          cmake . -B ./build -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
+        run: make
       - name: "Check banned functions"
         run: |
           liste_binaires=$(echo "$EXECUTABLES" | tr ',' '\n')
@@ -103,11 +99,7 @@ jobs:
         uses: actions/checkout@v4
       - name: "Launch tests"
         timeout-minutes: 2
-        run: |
-          cmake . -B ./build -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
-          cp ./build/unit_tests ./
-          ./unit_tests
+        run: make tests_run
   push_to_mirror:
     needs: run_tests
     runs-on: ubuntu-latest
