@@ -81,8 +81,6 @@ CC = g++ -g
 
 CPPFLAGS = -std=c++20 -Wall -Wextra -Werror $(INCLUDE)
 
-MAKEFLAGS += -j$(shell nproc)
-
 all: $(NAME)
 
 $(NAME): $(OBJ)
