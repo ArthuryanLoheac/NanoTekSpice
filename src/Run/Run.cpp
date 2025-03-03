@@ -37,12 +37,16 @@ static int assignValue(nts::Circuit &circuit, std::vector<std::string> parts)
 
     if (value.size() != 2)
         return 0;
-    if (value[1] == "U")
-        circuit.setValue(value[0], nts::Tristate::UNDEFINED);
-    if (value[1] == "0")
-        circuit.setValue(value[0], nts::Tristate::FALSE);
-    if (value[1] == "1")
-        circuit.setValue(value[0], nts::Tristate::TRUE);
+    try {
+        if (value[1] == "U")
+            circuit.setValue(value[0], nts::Tristate::UNDEFINED);
+        if (value[1] == "0")
+            circuit.setValue(value[0], nts::Tristate::FALSE);
+        if (value[1] == "1")
+            circuit.setValue(value[0], nts::Tristate::TRUE);
+    } catch (std::exception &e) {
+        std::cerr << e.what() << std::endl;
+    }
     return 0;
 }
 
