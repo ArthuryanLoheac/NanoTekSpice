@@ -34,10 +34,10 @@ SRC	=	src/Parsing/Parse.cpp \
 		src/Component/Advanced/4008/ComponentCo.cpp	\
 		src/Component/Advanced/4008/ComponentSum_l.cpp	\
 		src/Component/Advanced/4008/ComponentSum.cpp	\
+		src/Component/Advanced/4017/Component4017.cpp	\
 		src/Component/Other/ComponentOutput.cpp	\
 		src/Component/Other/ComponentNot.cpp	\
 		src/Component/Other/Component4069.cpp	\
-		src/Component/Other/Component4017.cpp	\
 		src/Component/Other/Circuit.cpp	\
 		src/Factory/ComponentFactory.cpp \
 
@@ -71,6 +71,7 @@ INCLUDE = 	-I./include \
 			-I./include/Component/Single \
 			-I./include/Component/FourGates \
 			-I./include/Component/Advanced/4008 \
+			-I./include/Component/Advanced/4017 \
 			-I./include/Component/Other \
 			-I./include/Factory \
 			-I./include/Parsing \

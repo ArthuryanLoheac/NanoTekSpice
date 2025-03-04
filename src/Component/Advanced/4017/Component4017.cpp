@@ -8,57 +8,95 @@
 #include "Component4017.hpp"
 
 nts::Component4017::Component4017(std::string name)
-    : AComponent(name)
+    : AComponent(name), compteur(0),
+    lastClock1(nts::UNDEFINED), lastClock2(nts::UNDEFINED)
 {
-    _internComponents.push_back(std::make_shared<ComponentSum>("A"));
-    _internComponents.push_back(std::make_shared<ComponentSum>("B"));
-    _internComponents.push_back(std::make_shared<ComponentSum>("C"));
-    _internComponents.push_back(std::make_shared<ComponentSum>("D"));
-    for (int i = 0; i < 7; i++)
-        _inOuts.push_back(makeEmptyPair(TypePin::IN));
-    _inOuts.push_back(makeEmptyPair(TypePin::USELESS));
-    _inOuts.push_back(makeEmptyPair(TypePin::IN));
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 12; i++)
         _inOuts.push_back(makeEmptyPair(TypePin::OUT));
-    _inOuts.push_back(makeEmptyPair(TypePin::IN));
-    _inOuts.push_back(makeEmptyPair(TypePin::USELESS));
-    _internComponents[0]->setLink(4, *_internComponents[1].get()->getInternComponents()[0], 1);
-    _internComponents[0]->setLink(4, *_internComponents[1].get()->getInternComponents()[1], 1);
-    _internComponents[1]->setLink(4, *_internComponents[2].get()->getInternComponents()[0], 1);
-    _internComponents[1]->setLink(4, *_internComponents[2].get()->getInternComponents()[1], 1);
-    _internComponents[2]->setLink(4, *_internComponents[3].get()->getInternComponents()[0], 1);
-    _internComponents[2]->setLink(4, *_internComponents[3].get()->getInternComponents()[1], 1);
+    for (int i = 0; i < 3; i++)
+        _inOuts.push_back(makeEmptyPair(TypePin::IN));
+}
+
+void nts::Component4017::updateCompteur(nts::Tristate reset)
+{
+    nts::Tristate clock1;
+    nts::Tristate clock2;
+
+    clock1 = getVal(12);
+    clock2 = getVal(13);
+    if ((lastClock1 == nts::FALSE && clock1 == nts::TRUE && clock2 == nts::FALSE) ||
+        (lastClock2 == nts::TRUE && clock2 == nts::FALSE && clock1 == nts::TRUE)) {
+        compteur++;
+        if (compteur == 10)
+            compteur = 0;
+    }
+    if (reset == nts::TRUE)
+        compteur = 0;
+    lastClock1 = clock1;
+    lastClock2 = clock2;
+}
+
+static nts::Tristate isActive(size_t compteur, size_t i)
+{
+    if (compteur == i)
+        return nts::TRUE;
+    return nts::FALSE;
 }
 
 nts::Tristate nts::Component4017::compute(std::size_t pin)
 {
-    return _internComponents[pin]->compute(pin);
+    if (_ValueComputed == NOTCOMPUTED) {
+        _ValueComputed = COMPUTING;
+        updateCompteur(getVal(14));
+        switch (pin) {
+            case 3: _ValueComputed = isActive(compteur, 0);
+                break;
+            case 2: _ValueComputed = isActive(compteur, 1);
+                break;
+            case 4: _ValueComputed = isActive(compteur, 2);
+                break;
+            case 7: _ValueComputed = isActive(compteur, 3);
+                break;
+            case 10: _ValueComputed = isActive(compteur, 4);
+                break;
+            case 1: _ValueComputed = isActive(compteur, 5);
+                break;
+            case 5: _ValueComputed = isActive(compteur, 6);
+                break;
+            case 6: _ValueComputed = isActive(compteur, 7);
+                break;
+            case 9: _ValueComputed = isActive(compteur, 8);
+                break;
+            case 11: _ValueComputed = isActive(compteur, 9);
+                break;
+            case 12: _ValueComputed = (compteur < 5) ? nts::TRUE : nts::FALSE;
+                break;
+            default: _ValueComputed = nts::UNDEFINED;
+        }
+    }
+    return safeReturn(pin);
 }
 
 size_t nts::Component4017::pinOutToInternPin(size_t pin)
 {
-    if (pin == 9)
-        return 1;
-    if (pin == 7 || pin == 5 || pin == 3 || pin == 1)
-        return 2;
-    if (pin == 6 || pin == 4 || pin == 2 || pin == 15)
-        return 3;
-    if (pin == 14)
-        return 4;
-    if (pin == 10 || pin == 11 || pin == 12 || pin == 13)
-        return 5;
+    if (pin <= 12)
+        return pin;
     return 0;
 }
 
 size_t nts::Component4017::getIdFromPin(size_t pin)
 {
-    if (pin == 9 || pin == 7 || pin == 6 || pin == 10)
+    if (pin <= 12)
         return 0;
-    if (pin == 4 || pin == 5 || pin == 11)
-        return 1;
-    if (pin == 2 || pin == 3 || pin == 12)
-        return 2;
-    if (pin == 1 || pin == 15 || pin == 13 || pin == 14)
-        return 3;
     throw nts::AComponent::Errors("Pin is not an output : " + std::to_string(pin));
+}
+
+nts::Tristate nts::Component4017::getVal(int i)
+{
+    if (_inOuts[i].second.size() == 0)
+        _lastValue[i] = nts::UNDEFINED;
+    else{
+        _lastValue[i] =  _inOuts[i].second[0].first.compute(i);
+    }
+    return _lastValue[i];
 }
