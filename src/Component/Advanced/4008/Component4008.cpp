@@ -10,10 +10,10 @@
 nts::Component4008::Component4008(std::string name)
     : AComponent(name)
 {
-    _internComponents.push_back(std::make_shared<ComponentSum>("A"));
-    _internComponents.push_back(std::make_shared<ComponentSum>("B"));
-    _internComponents.push_back(std::make_shared<ComponentSum>("C"));
-    _internComponents.push_back(std::make_shared<ComponentSum>("D"));
+    _internComponents.push_back(std::make_shared<ComponentSum>(""));
+    _internComponents.push_back(std::make_shared<ComponentSum>(""));
+    _internComponents.push_back(std::make_shared<ComponentSum>(""));
+    _internComponents.push_back(std::make_shared<ComponentSum>(""));
     for (int i = 0; i < 7; i++)
         _inOuts.push_back(makeEmptyPair(TypePin::IN));
     _inOuts.push_back(makeEmptyPair(TypePin::USELESS));
