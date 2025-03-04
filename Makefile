@@ -37,6 +37,7 @@ SRC	=	src/Parsing/Parse.cpp \
 		src/Component/Other/ComponentOutput.cpp	\
 		src/Component/Other/ComponentNot.cpp	\
 		src/Component/Other/Component4069.cpp	\
+		src/Component/Other/Component4017.cpp	\
 		src/Component/Other/Circuit.cpp	\
 		src/Factory/ComponentFactory.cpp \
 
