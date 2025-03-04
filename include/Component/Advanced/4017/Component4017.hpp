@@ -15,12 +15,14 @@ namespace nts
     {
         private:
             size_t compteur = 0;
-            nts::Tristate lastClock1 = UNDEFINED;
-            nts::Tristate lastClock2 = UNDEFINED;
-            void updateCompteur(Tristate reset);
+            nts::Tristate lastClock1 = FALSE;
+            nts::Tristate lastClock2 = FALSE;
+            void updateCompteur(Tristate reset, Tristate clock1, Tristate clock2);
+            int updated = 0;
 
         public:
             Component4017(std::string name);
+            void simulate(std::size_t tick) override;
             Tristate compute(std::size_t pin) override;
             size_t pinOutToInternPin(size_t pin) override;
             size_t getIdFromPin(size_t pin) override;
