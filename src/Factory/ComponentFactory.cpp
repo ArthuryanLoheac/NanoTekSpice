@@ -24,6 +24,7 @@
 #include "Component4071.hpp"
 #include "Component4081.hpp"
 #include "Component4008.hpp"
+#include "Component4017.hpp"
 
 nts::ComponentFactory::ComponentFactory()
 {
@@ -43,7 +44,8 @@ nts::ComponentFactory::ComponentFactory()
         {"4069", []() { return std::make_unique<nts::Component4069>("4069"); }},
         {"4071", []() { return std::make_unique<nts::Component4071>("4071"); }},
         {"4081", []() { return std::make_unique<nts::Component4081>("4081"); }},
-        {"4008", []() { return std::make_unique<nts::Component4008>("4008"); }}
+        {"4008", []() { return std::make_unique<nts::Component4008>("4008"); }},
+        {"4017", []() { return std::make_unique<nts::Component4017>("4017"); }}
     };
 }
 
