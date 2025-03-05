@@ -62,7 +62,8 @@ Test(Component4069, compute, .init=redirect_all_std)
 Test(Component4069, errorCase, .init=redirect_all_std)
 {
     nts::Component4069 component4069("4069");
-    nts::ComponentTrue componentTrue("true");
+    nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentFalse componentFalse("false");
 
     cr_assert_eq(component4069.pinOutToInternPin(0), 0);

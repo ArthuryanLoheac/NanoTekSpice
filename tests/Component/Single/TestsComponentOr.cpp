@@ -23,6 +23,7 @@ Test(ComponentOr, compute_or_true, .init=redirect_all_std)
 {
     nts::ComponentOr componentOr("or");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
 
     componentOr.setLink(1, componentTrue, 1);
     componentOr.setLink(2, componentTrue, 1);
@@ -46,6 +47,7 @@ Test(ComponentOr, compute_or_UNDEFINED, .init=redirect_all_std)
 {
     nts::ComponentOr componentOr("or");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentInput componentInput("2");
 
     componentOr.setLink(1, componentTrue, 1);

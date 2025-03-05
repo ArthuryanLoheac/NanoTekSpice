@@ -19,5 +19,12 @@ nts::ComponentTrue::~ComponentTrue()
 nts::Tristate nts::ComponentTrue::compute(std::size_t pin)
 {
     (void)pin;
-    return TRUE;
+    return _value;
+}
+
+void nts::ComponentTrue::simulate(std::size_t tick)
+{
+    (void)tick;
+    if (_value == UNDEFINED)
+        _value = TRUE;
 }

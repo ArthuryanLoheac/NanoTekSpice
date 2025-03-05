@@ -18,7 +18,8 @@ static void redirect_all_std(void)
 
 Test(ComponentTrue, compute, .init=redirect_all_std)
 {
-    nts::ComponentTrue componentTrue("true");
+    nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
 
     cr_assert_eq(componentTrue.compute(0), nts::TRUE);
 }
