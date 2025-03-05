@@ -23,6 +23,7 @@ Test(ComponentNand, compute_and_true, .init=redirect_all_std)
 {
     nts::ComponentNand componentNand("and");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
 
     componentNand.setLink(1, componentTrue, 1);
     componentNand.setLink(2, componentTrue, 1);
@@ -34,8 +35,10 @@ Test(ComponentNand, compute_and_false, .init=redirect_all_std)
 {
     nts::ComponentNand componentNand("and");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentNand.setLink(1, componentTrue, 1);
     componentNand.setLink(2, componentFalse, 1);
     componentNand.setNotComputed();
@@ -46,6 +49,7 @@ Test(ComponentNand, compute_and_UNDEFINED, .init=redirect_all_std)
 {
     nts::ComponentNand componentNand("and");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentInput componentInput("2");
 
     componentNand.setLink(1, componentTrue, 1);
@@ -76,6 +80,7 @@ Test(ComponentNand, compute_and_AutoLinkFalse, .init=redirect_all_std)
     nts::ComponentNand componentNand("and");
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentNand.setLink(3, componentNand, 2);
     componentNand.setLink(1, componentFalse, 1);
     componentNand.setNotComputed();

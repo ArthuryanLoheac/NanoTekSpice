@@ -23,8 +23,10 @@ Test(ComponentSum, compute_sum_000, .init=redirect_all_std)
 {
     nts::ComponentSum componentSum("and");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentFalse componentFalse("2");
 
+    componentFalse.simulate(1);
     componentSum.setLink(1, componentFalse, 1);
     componentSum.setLink(2, componentFalse, 1);
     componentSum.setLink(3, componentFalse, 1);
@@ -37,8 +39,10 @@ Test(ComponentSum, compute_sum_100, .init=redirect_all_std)
 {
     nts::ComponentSum componentSum("and");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentFalse componentFalse("2");
 
+    componentFalse.simulate(1);
     componentSum.setLink(1, componentTrue, 1);
     componentSum.setLink(2, componentFalse, 1);
     componentSum.setLink(3, componentFalse, 1);
@@ -51,8 +55,10 @@ Test(ComponentSum, compute_sum_011, .init=redirect_all_std)
 {
     nts::ComponentSum componentSum("and");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentFalse componentFalse("2");
 
+    componentFalse.simulate(1);
     componentSum.setLink(1, componentFalse, 1);
     componentSum.setLink(2, componentTrue, 1);
     componentSum.setLink(3, componentTrue, 1);
@@ -65,6 +71,7 @@ Test(ComponentSum, compute_sum_111, .init=redirect_all_std)
 {
     nts::ComponentSum componentSum("and");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentFalse componentFalse("2");
 
     componentSum.setLink(1, componentTrue, 1);

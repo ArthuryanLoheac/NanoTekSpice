@@ -34,8 +34,10 @@ Test(Component4030, defaultStat, .init=redirect_all_std)
 Test(Component4030, firstTrue, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
-    nts::ComponentTrue componentTrue1("t1");
-    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentTrue componentTrue1("1");
+    componentTrue1.simulate(1);
+    nts::ComponentTrue componentTrue2("1");
+    componentTrue2.simulate(1);
 
     component4030.setLink(1, componentTrue1, 1);
     component4030.setLink(2, componentTrue2, 1);
@@ -50,8 +52,10 @@ Test(Component4030, firstTrue, .init=redirect_all_std)
 Test(Component4030, SecondTrue, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
-    nts::ComponentTrue componentTrue1("t1");
-    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentTrue componentTrue1("1");
+    componentTrue1.simulate(1);
+    nts::ComponentTrue componentTrue2("1");
+    componentTrue2.simulate(1);
 
     component4030.setLink(5, componentTrue1, 1);
     component4030.setLink(6, componentTrue2, 1);
@@ -65,8 +69,10 @@ Test(Component4030, SecondTrue, .init=redirect_all_std)
 Test(Component4030, ThreeTrue, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
-    nts::ComponentTrue componentTrue1("t1");
-    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentTrue componentTrue1("1");
+    componentTrue1.simulate(1);
+    nts::ComponentTrue componentTrue2("1");
+    componentTrue2.simulate(1);
 
     component4030.setLink(8, componentTrue1, 1);
     component4030.setLink(9, componentTrue2, 1);
@@ -80,8 +86,10 @@ Test(Component4030, ThreeTrue, .init=redirect_all_std)
 Test(Component4030, FourTrue, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
-    nts::ComponentTrue componentTrue1("t1");
-    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentTrue componentTrue1("1");
+    componentTrue1.simulate(1);
+    nts::ComponentTrue componentTrue2("1");
+    componentTrue2.simulate(1);
 
     component4030.setLink(13, componentTrue1, 1);
     component4030.setLink(12, componentTrue2, 1);
@@ -96,8 +104,10 @@ Test(Component4030, FourTrue, .init=redirect_all_std)
 Test(Component4030, FourTrueInverted_Sens, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
-    nts::ComponentTrue componentTrue1("t1");
-    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentTrue componentTrue1("1");
+    componentTrue1.simulate(1);
+    nts::ComponentTrue componentTrue2("1");
+    componentTrue2.simulate(1);
 
     componentTrue1.setLink(1, component4030, 13);
     componentTrue2.setLink(1, component4030, 12);
@@ -112,8 +122,10 @@ Test(Component4030, FourTrueInverted_Sens, .init=redirect_all_std)
 Test(Component4030, FourTrueMultiple, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
-    nts::ComponentTrue componentTrue1("t1");
-    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentTrue componentTrue1("1");
+    componentTrue1.simulate(1);
+    nts::ComponentTrue componentTrue2("1");
+    componentTrue2.simulate(1);
     nts::ComponentFalse componentFalse("f1");
 
     componentTrue1.setLink(1, component4030, 13);
@@ -121,6 +133,7 @@ Test(Component4030, FourTrueMultiple, .init=redirect_all_std)
     component4030.setLink(1, componentTrue1, 1);
     component4030.setLink(2, componentFalse, 1);
 
+    componentFalse.simulate(1);
     component4030.setNotComputed();
     cr_assert_eq(component4030.compute(0), nts::TRUE);
     cr_assert_eq(component4030.compute(1), nts::UNDEFINED);
@@ -131,8 +144,10 @@ Test(Component4030, FourTrueMultiple, .init=redirect_all_std)
 Test(Component4030, SecondTrueNotComputed, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
-    nts::ComponentTrue componentTrue1("t1");
-    nts::ComponentTrue componentTrue2("t2");
+    nts::ComponentTrue componentTrue1("1");
+    componentTrue1.simulate(1);
+    nts::ComponentTrue componentTrue2("1");
+    componentTrue2.simulate(1);
 
     component4030.setLink(5, componentTrue1, 1);
     component4030.setLink(6, componentTrue2, 1);
@@ -147,7 +162,8 @@ Test(Component4030, TwoComponentLinked, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
     nts::Component4030 component4030_2("4030_2");
-    nts::ComponentTrue componentTrue("t");
+    nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
 
     component4030.setLink(1, componentTrue, 1);
     component4030.setLink(2, componentTrue, 1);
@@ -163,7 +179,8 @@ Test(Component4030, TwoComponentLinked_two, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
     nts::Component4030 component4030_2("4030_2");
-    nts::ComponentTrue componentTrue("t");
+    nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
 
     component4030.setLink(5, componentTrue, 1);
     component4030.setLink(6, componentTrue, 1);
@@ -179,7 +196,8 @@ Test(Component4030, TwoComponentLinked_output, .init=redirect_all_std)
 {
     nts::Component4030 component4030("4030");
     nts::Component4030 component4030_2("4030_2");
-    nts::ComponentTrue componentTrue("t");
+    nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentOutput componentOutput("output");
 
     component4030.setLink(5, componentTrue, 1);

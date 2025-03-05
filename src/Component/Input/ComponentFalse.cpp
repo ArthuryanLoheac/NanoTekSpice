@@ -16,8 +16,15 @@ nts::ComponentFalse::~ComponentFalse()
 {
 }
 
+void nts::ComponentFalse::simulate(std::size_t tick)
+{
+    (void)tick;
+    if (_value == UNDEFINED)
+        _value = FALSE;
+}
+
 nts::Tristate nts::ComponentFalse::compute(std::size_t pin)
 {
     (void)pin;
-    return FALSE;
+    return _value;
 }

@@ -28,7 +28,8 @@ Test(ComponentOutput, compute, .init=redirect_all_std)
 Test(ComponentOutput, computeLinkedTrue, .init=redirect_all_std)
 {
     nts::ComponentOutput componentOutput("out");
-    nts::ComponentTrue componentTrue("true");
+    nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
 
     componentOutput.setNotComputed();
     componentTrue.setLink(1, componentOutput, 1);

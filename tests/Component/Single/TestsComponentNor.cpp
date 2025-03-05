@@ -24,6 +24,7 @@ Test(ComponentNor, compute_nor_true, .init=redirect_all_std)
     nts::ComponentNor componentNor("nor");
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentNor.setLink(1, componentFalse, 1);
     componentNor.setLink(2, componentFalse, 1);
     componentNor.setNotComputed();
@@ -34,6 +35,7 @@ Test(ComponentNor, compute_nor_false, .init=redirect_all_std)
 {
     nts::ComponentNor componentNor("nor");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
 
     componentNor.setLink(1, componentTrue, 1);
     componentNor.setLink(2, componentTrue, 1);
@@ -45,6 +47,7 @@ Test(ComponentNor, compute_nor_UNDEFINED, .init=redirect_all_std)
 {
     nts::ComponentNor componentNor("nor");
     nts::ComponentTrue componentTrue("1");
+    componentTrue.simulate(1);
     nts::ComponentInput componentInput("2");
 
     componentNor.setLink(1, componentTrue, 1);

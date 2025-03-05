@@ -20,5 +20,13 @@ Test(ComponentFalse, compute, .init=redirect_all_std)
 {
     nts::ComponentFalse componentFalse("false");
 
+    cr_assert_eq(componentFalse.compute(0), nts::UNDEFINED);
+}
+
+Test(ComponentFalse, compute_simulate, .init=redirect_all_std)
+{
+    nts::ComponentFalse componentFalse("false");
+
+    componentFalse.simulate(1);
     cr_assert_eq(componentFalse.compute(0), nts::FALSE);
 }
