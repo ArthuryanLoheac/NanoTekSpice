@@ -204,3 +204,16 @@ Test(ParseBySpaces, xorLink, .init=redirect_all_std)
     cr_assert_str_eq(newLink[2][2].c_str(), "gate");
     cr_assert_str_eq(newLink[2][3].c_str(), "3");
 }
+
+Test(init, empty_chipset_and_link, .init=redirect_all_std)
+{
+    std::string a = parseFile("tests/Exemple/nts_single/nothing.nts");
+    std::vector<std::string> b = parseByLine(a);
+    std::vector<std::string> c = removeCommentary(b);
+
+    try {
+        std::vector<std::string> link = getPartList(c, ".links:", ".chipsets:");
+    } catch (const std::exception &e) {
+        cr_assert_str_eq(e.what(), "Error: No content between .links: and .chipsets:");
+    }
+}
