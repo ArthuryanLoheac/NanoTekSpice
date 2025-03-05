@@ -87,6 +87,9 @@ std::vector<std::string> getPartList(std::vector<std::string> lines,
     }
     if (pos == -1)
         throw std::invalid_argument("Error: Unable to find " + start);
+    if (linesInPart.size() == 0)
+        throw std::invalid_argument("Error: No content between " + start +
+            " and " + stop);
     return linesInPart;
 }
 
