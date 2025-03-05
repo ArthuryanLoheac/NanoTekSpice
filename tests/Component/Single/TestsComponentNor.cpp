@@ -24,6 +24,7 @@ Test(ComponentNor, compute_nor_true, .init=redirect_all_std)
     nts::ComponentNor componentNor("nor");
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentNor.setLink(1, componentFalse, 1);
     componentNor.setLink(2, componentFalse, 1);
     componentNor.setNotComputed();

@@ -14,10 +14,13 @@ namespace nts
 {
     class ComponentFalse : public AInput
     {
-    public:
-        ComponentFalse(std::string name);
-        ~ComponentFalse();
-        nts::Tristate compute(std::size_t pin) override;
+        private:
+            nts::Tristate _value = nts::UNDEFINED;
+        public:
+            ComponentFalse(std::string name);
+            ~ComponentFalse();
+            void simulate(std::size_t tick) override;
+            nts::Tristate compute(std::size_t pin) override;
     };
 }
 

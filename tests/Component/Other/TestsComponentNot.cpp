@@ -41,6 +41,7 @@ Test(ComponentNot, computeLinkedFalse, .init=redirect_all_std)
     nts::ComponentNot componentNot("not");
     nts::ComponentFalse componentFalse("false");
 
+    componentFalse.simulate(1);
     componentNot.setNotComputed();
     componentFalse.setLink(1, componentNot, 1);
     cr_assert_eq(componentNot.compute(0), nts::TRUE);

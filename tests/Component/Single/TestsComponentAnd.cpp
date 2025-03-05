@@ -36,6 +36,7 @@ Test(ComponentAnd, compute_and_false, .init=redirect_all_std)
     nts::ComponentTrue componentTrue("1");
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentAnd.setLink(1, componentTrue, 1);
     componentAnd.setLink(2, componentFalse, 1);
     componentAnd.setNotComputed();
@@ -76,6 +77,7 @@ Test(ComponentAnd, compute_and_AutoLinkFalse, .init=redirect_all_std)
     nts::ComponentAnd componentAnd("and");
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentAnd.setLink(3, componentAnd, 2);
     componentAnd.setLink(1, componentFalse, 1);
     componentAnd.setNotComputed();

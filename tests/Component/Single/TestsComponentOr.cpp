@@ -35,6 +35,7 @@ Test(ComponentOr, compute_or_false, .init=redirect_all_std)
     nts::ComponentOr componentOr("or");
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentOr.setLink(1, componentFalse, 1);
     componentOr.setLink(2, componentFalse, 1);
     componentOr.setNotComputed();

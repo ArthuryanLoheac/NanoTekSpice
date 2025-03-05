@@ -121,6 +121,7 @@ Test(Component4011, FourTrueMultiple, .init=redirect_all_std)
     component4011.setLink(1, componentTrue1, 1);
     component4011.setLink(2, componentFalse, 1);
 
+    componentFalse.simulate(1);
     component4011.setNotComputed();
     cr_assert_eq(component4011.compute(0), nts::TRUE);
     cr_assert_eq(component4011.compute(1), nts::UNDEFINED);

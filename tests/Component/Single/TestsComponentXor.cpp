@@ -36,6 +36,7 @@ Test(ComponentXor, compute_and_false, .init=redirect_all_std)
     nts::ComponentTrue componentTrue("1");
     nts::ComponentFalse componentFalse("1");
 
+    componentFalse.simulate(1);
     componentXor.setLink(1, componentTrue, 1);
     componentXor.setLink(2, componentFalse, 1);
     componentXor.setNotComputed();
