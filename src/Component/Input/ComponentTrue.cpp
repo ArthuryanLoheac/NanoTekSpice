@@ -10,6 +10,7 @@
 nts::ComponentTrue::ComponentTrue(std::string name)
     : AInput(name)
 {
+    _value = TRUE;
 }
 
 nts::ComponentTrue::~ComponentTrue()
@@ -25,6 +26,4 @@ nts::Tristate nts::ComponentTrue::compute(std::size_t pin)
 void nts::ComponentTrue::simulate(std::size_t tick)
 {
     (void)tick;
-    if (_value == UNDEFINED)
-        _value = TRUE;
 }
