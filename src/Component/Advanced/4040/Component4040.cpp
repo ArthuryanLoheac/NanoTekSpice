@@ -53,9 +53,9 @@ static nts::Tristate isActive(size_t compteur, size_t i)
 
 nts::Tristate nts::Component4040::compute(std::size_t pin)
 {
-    nts::Tristate clock1 = getVal(10);
-    nts::Tristate reset = getVal(11);
-    
+    nts::Tristate clock1 = getVal(9);
+    nts::Tristate reset = getVal(10);
+
     if (clock1 == nts::UNDEFINED || reset == nts::UNDEFINED)
         return nts::UNDEFINED;
     if (updated > 0)
@@ -83,7 +83,7 @@ nts::Tristate nts::Component4040::compute(std::size_t pin)
             break;
         case 15: _ValueComputed = isActive(compteur, 10);
             break;
-        case 1:  _ValueComputed = isActive(compteur, 11); // Q12 - Bit 11
+        case 1:  _ValueComputed = isActive(compteur, 11);
             break;
         default: _ValueComputed = nts::UNDEFINED;
     }
