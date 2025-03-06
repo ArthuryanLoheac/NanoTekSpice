@@ -24,6 +24,7 @@ namespace nts
 
     private:
         Tristate _value;
+        Tristate _valueComputed;
     };
 }
 
