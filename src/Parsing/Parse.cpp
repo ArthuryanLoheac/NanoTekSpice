@@ -37,6 +37,7 @@ static int init(std::vector<std::vector<std::string>> chipsets,
             std::size_t pin2 = std::stoul(link[3]);
             circuit.getComponent(comp1).setLink(pin1, circuit.getComponent(comp2), pin2);
         }
+        circuit.simulate();
     } catch (const std::exception &e) {
         std::cerr << e.what() << std::endl;
         return 84;

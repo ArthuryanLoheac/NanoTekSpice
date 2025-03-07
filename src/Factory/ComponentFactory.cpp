@@ -47,6 +47,7 @@ nts::ComponentFactory::ComponentFactory()
         {"4081", []() { return std::make_unique<nts::Component4081>("4081"); }},
         {"4008", []() { return std::make_unique<nts::Component4008>("4008"); }},
         {"4008", []() { return std::make_unique<nts::Component4008>("4008"); }},
+        {"4017", []() { return std::make_unique<nts::Component4017>("4017"); }},
         {"4040", []() { return std::make_unique<nts::Component4040>("4040"); }}
     };
 }
