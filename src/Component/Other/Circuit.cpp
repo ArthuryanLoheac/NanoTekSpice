@@ -16,6 +16,17 @@ nts::Circuit::Circuit()
     _ticks_passed = 0;
 }
 
+void nts::Circuit::simulate()
+{
+    for (auto &component : _internComponents) {
+        component->setNotComputed();
+    }
+    for (auto &component : _internComponents) {
+        if (dynamic_cast<nts::ComponentOutput *>(component.get()))
+            component->compute(0);
+    }
+}
+
 void nts::Circuit::simulate(std::size_t tick)
 {
     _ticks_passed += tick;

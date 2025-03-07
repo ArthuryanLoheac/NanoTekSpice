@@ -21,6 +21,7 @@ namespace nts
     public:
         Circuit();
         void simulate(std::size_t tick);
+        void simulate();
         nts::Tristate compute(std::size_t pin);
         void display(void);
         void setValue(std::string const &name, nts::Tristate value);
@@ -28,7 +29,7 @@ namespace nts
         IComponent &getComponent(std::string const &name);
 
     private:
-        std::size_t _ticks_passed;
+        size_t _ticks_passed;
     };
 }
 
