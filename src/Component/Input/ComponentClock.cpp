@@ -11,6 +11,7 @@ nts::ComponentClock::ComponentClock(std::string name)
     : AInput(name)
 {
     _value = nts::UNDEFINED;
+    _valueComputed = nts::UNDEFINED;
 }
 
 nts::ComponentClock::~ComponentClock()
@@ -32,7 +33,8 @@ void nts::ComponentClock::simulate(std::size_t tick)
 nts::Tristate nts::ComponentClock::compute(std::size_t pin)
 {
     (void)pin;
-    return _value;
+    _valueComputed = _value;
+    return _valueComputed;
 }
 
 void nts::ComponentClock::setValue(nts::Tristate value)
@@ -42,5 +44,5 @@ void nts::ComponentClock::setValue(nts::Tristate value)
 
 nts::Tristate nts::ComponentClock::getValueComputed()
 {
-    return _value;
+    return _valueComputed;
 }

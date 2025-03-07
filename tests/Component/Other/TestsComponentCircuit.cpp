@@ -55,9 +55,9 @@ Test(Circuit, SortOrderPrint, .init=redirect_all_std)
     circuit.display();
     cr_assert_stdout_eq_str("tick: 1\n"
         "input(s):\n"
-        "  a: 1\n"
+        "  a: U\n"
         "  b: 0\n"
-        "  c: 1\n"
+        "  c: U\n"
         "output(s):\n"
         "  output: 0\n"
     );
@@ -79,9 +79,9 @@ Test(Circuit, SortOrderPrint_clock, .init=redirect_all_std)
     circuit.display();
     cr_assert_stdout_eq_str("tick: 1\n"
         "input(s):\n"
-        "  a: 0\n"
+        "  a: U\n"
         "  b: 1\n"
-        "  c: 0\n"
+        "  c: U\n"
         "output(s):\n"
         "  output: 1\n"
     );

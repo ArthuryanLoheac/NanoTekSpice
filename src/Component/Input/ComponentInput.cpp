@@ -11,6 +11,7 @@ nts::ComponentInput::ComponentInput(std::string name)
     : AInput(name)
 {
     _value = nts::UNDEFINED;
+    _valueComputed = nts::UNDEFINED;
 }
 
 nts::ComponentInput::~ComponentInput()
@@ -20,7 +21,8 @@ nts::ComponentInput::~ComponentInput()
 nts::Tristate nts::ComponentInput::compute(std::size_t pin)
 {
     (void)pin;
-    return _value;
+    _valueComputed = _value;
+    return _valueComputed;
 }
 
 void nts::ComponentInput::setValue(nts::Tristate value)
@@ -30,5 +32,5 @@ void nts::ComponentInput::setValue(nts::Tristate value)
 
 nts::Tristate nts::ComponentInput::getValueComputed()
 {
-    return _value;
+    return _valueComputed;
 }

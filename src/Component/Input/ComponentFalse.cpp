@@ -10,6 +10,7 @@
 nts::ComponentFalse::ComponentFalse(std::string name)
     : AInput(name)
 {
+    _value = FALSE;
 }
 
 nts::ComponentFalse::~ComponentFalse()
@@ -19,8 +20,6 @@ nts::ComponentFalse::~ComponentFalse()
 void nts::ComponentFalse::simulate(std::size_t tick)
 {
     (void)tick;
-    if (_value == UNDEFINED)
-        _value = FALSE;
 }
 
 nts::Tristate nts::ComponentFalse::compute(std::size_t pin)
