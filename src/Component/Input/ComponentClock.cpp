@@ -39,7 +39,12 @@ nts::Tristate nts::ComponentClock::compute(std::size_t pin)
 
 void nts::ComponentClock::setValue(nts::Tristate value)
 {
-    _value = value;
+    if (value == nts::UNDEFINED)
+        _value = value;
+    if (value == nts::TRUE)
+        _value = nts::FALSE;
+    else
+        _value = nts::TRUE;
 }
 
 nts::Tristate nts::ComponentClock::getValueComputed()
